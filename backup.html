@@ -167,6 +167,22 @@
             display: block;
         }
 
+  .global-back-btn{
+    display:none;
+    max-width:1400px;
+    margin:20px auto 0;
+    padding:0 20px;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    cursor:pointer;
+    color:var(--text-charcoal);
+}
+
+.global-back-btn:hover{
+    opacity:.7;
+}
         /* Shopify-style Banner Slider Section */
         .slider-viewport {
             position: relative;
@@ -1575,10 +1591,15 @@
 
             <div class="header-actions">
                 <a onclick="navigateTo('account')" class="action-btn" title="My Customer Account">
-                    👤
+                    <svg class="icon icon-account" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 22px; height: 22px;">
+  <path d="M10 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM3 18c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
                 </a>
                 <button onclick="toggleMinicart(true)" class="action-btn" title="View Shopping Cart" aria-label="Shopping Cart">
-                    👜
+                  <svg class="icon icon-cart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 22px; height: 22px;">
+  <path d="M3.75 6.25h12.5l1.25 10.625H2.5L3.75 6.25Z" stroke-linejoin="round"/>
+  <path d="M6.875 8.125V5a3.125 3.125 0 1 1 6.25 0v3.125" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
                     <span class="cart-count-badge" id="header-cart-count">3</span>
                 </button>
             </div>
@@ -1586,7 +1607,11 @@
     </header>
 
     <main>
-
+<div id="global-back-btn"
+     class="global-back-btn"
+     onclick="goBack()">
+    ← Back
+</div>
         <section id="section-home" class="page-section active-section">
             <div class="slider-viewport">
                 <button class="slider-arrow arrow-left" onclick="moveSlide(-1)" aria-label="Previous slide">⟨</button>
@@ -1920,10 +1945,20 @@
                     <h4 class="footer-widget-title">AURA LUXE</h4>
                     <p class="footer-about-text">An architectural canvas of elite formulation beauty items designed with timeless luxury elements.</p>
                     <div class="social-links-flex">
-                        <a href="https://instagram.com" target="_blank" class="social-icon-circle" title="Follow Aura Luxe on Instagram">IG</a>
-                        <a href="https://facebook.com" target="_blank" class="social-icon-circle" title="Follow Aura Luxe on Facebook">FB</a>
-                        <a href="https://pinterest.com" target="_blank" class="social-icon-circle" title="Follow Aura Luxe on Pinterest">PT</a>
-                        <a href="https://youtube.com" target="_blank" class="social-icon-circle" title="Follow Aura Luxe on YouTube">YT</a>
+                        <a href="https://instagram.com" target="_blank" class="social-icon-circle" title="Follow Aura Luxe on Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
+  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+</svg></a>
+                        <a href="https://facebook.com" target="_blank" class="social-icon-circle" title="Follow Aura Luxe on Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;">
+  <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12z"/>
+</svg></a>
+                        <a href="https://pinterest.com" target="_blank" class="social-icon-circle" title="Follow Aura Luxe on Pinterest"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;">
+  <path d="M12 2C6.477 2 2 6.477 2 12c0 4.084 2.445 7.595 5.942 9.146-.082-.777-.156-1.97.033-2.818.17-.768 1.096-4.892 1.096-4.892s-.28-.56-.28-1.388c0-1.299.753-2.269 1.69-2.269.797 0 1.182.598 1.182 1.314 0 .8-.51 1.995-.773 3.104-.22.929.466 1.686 1.381 1.686 1.657 0 2.932-1.747 2.932-4.269 0-2.231-1.604-3.792-3.893-3.792-2.651 0-4.207 1.988-4.207 4.043 0 .801.308 1.661.692 2.127a.279.279 0 0 1 .064.268c-.07.295-.227.929-.258 1.058-.041.17-.135.206-.312.124-1.164-.542-1.892-2.243-1.892-3.609 0-2.94 2.136-5.639 6.16-5.639 3.233 0 5.748 2.304 5.748 5.385 0 3.213-2.025 5.799-4.838 5.799-.945 0-1.833-.491-2.136-1.07l-.581 2.213c-.21.809-.777 1.823-1.157 2.442.871.269 1.797.414 2.757.414 5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+</svg></a>
+                        <a href="https://youtube.com" target="_blank" class="social-icon-circle" title="Follow Aura Luxe on YouTube"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;">
+  <path d="M23.498 6.186a2.997 2.997 0 0 0-2.11-2.12C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.388.566a2.997 2.997 0 0 0-2.11 2.12C0 8.083 0 12 0 12s0 3.917.502 5.814a2.997 2.997 0 0 0 2.11 2.12C4.495 20.5 12 20.5 12 20.5s7.505 0 9.388-.566a2.997 2.997 0 0 0 2.11-2.12C24 15.917 24 12 24 12s0-3.917-.502-5.814zM9.75 15.568V8.432L15.818 12 9.75 15.568z"/>
+</svg></a>
                     </div>
                 </div>
                 <div>
@@ -2056,7 +2091,224 @@
                 reviews: [
                     { stars: 4, author: "Hanna T.", text: "Extremely clean build trajectory. A tiny dust on the brush goes incredibly far." }
                 ]
-            }
+            },
+            {
+    id: "prod-mascara-volume",
+    category: "Lipstick",
+    vendor: "AURA LUXE MAISON",
+    title: "Infinite Noir Volume Mascara",
+    price: 36.00,
+    oldPrice: 42.00,
+    defaultImg: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=500&auto=format&fit=crop",
+    description: "Ultra-black volumizing mascara engineered for dramatic length, definition and smudge-resistant wear.",
+    variants: {
+        type: "size",
+        values: [
+            { name: "Standard Edition", value: "Standard", img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=500&auto=format&fit=crop", price: 36.00, stock: "In Stock" },
+            {
+            name: "Standard Edition",
+            value: "10ml",
+            img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=500&auto=format&fit=crop",
+            price: 36.00,
+            stock: "In Stock"
+        },
+        {
+            name: "Professional Edition",
+            value: "15ml",
+            img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=500&auto=format&fit=crop",
+            price: 44.00,
+            stock: "Limited Allocation Left"
+        }
+        ]
+    },
+    reviews: [
+        { stars: 5, author: "Emily S.", text: "Amazing volume without clumping." }
+    ]
+},
+            {
+    id: "prod-serum-gold",
+    category: "Foundations",
+    vendor: "AURA LUXE FORMULATIONS",
+    title: "24K Radiance Renewal Serum",
+    price: 74.00,
+    oldPrice: 89.00,
+    defaultImg: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=500&auto=format&fit=crop",
+    description: "Luxury facial serum infused with botanical extracts and illuminating particles.",
+    variants: {
+        type: "size",
+        values: [
+            { name: "30ml Bottle", value: "30ml", img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=500&auto=format&fit=crop", price: 74.00, stock: "In Stock" },
+            {
+            name: "50ml Bottle",
+            value: "50ml",
+            img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=500&auto=format&fit=crop",
+            price: 98.00,
+            stock: "In Stock"
+        },
+        {
+            name: "Luxury 100ml Bottle",
+            value: "100ml",
+            img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=500&auto=format&fit=crop",
+            price: 169.00,
+            stock: "Backorder Ships in 4 Days"
+        }
+        ]
+    },
+    reviews: [
+        { stars: 5, author: "Sophia M.", text: "Leaves skin glowing and hydrated." }
+    ]
+},
+            {
+    id: "prod-liner-precision",
+    category: "Eyeshadow Palettes",
+    vendor: "AURA LUXE STUDIO",
+    title: "Precision Ink Liquid Eyeliner",
+    price: 29.00,
+    oldPrice: null,
+    defaultImg: "https://images.unsplash.com/photo-1583241800698-9dcb648f1d73?q=80&w=500&auto=format&fit=crop",
+    description: "High-definition liquid eyeliner with ultra-fine precision tip.",
+    variants: {
+        type: "size",
+        values: [
+            { name: "Matte Black", value: "Black", img: "https://images.unsplash.com/photo-1583241800698-9dcb648f1d73?q=80&w=500&auto=format&fit=crop", price: 29.00, stock: "In Stock" },
+             {
+            name: "Espresso Brown",
+            value: "Brown",
+            img: "https://images.unsplash.com/photo-1583241800698-9dcb648f1d73?q=80&w=500&auto=format&fit=crop",
+            price: 31.00,
+            stock: "In Stock"
+        },
+        {
+            name: "Midnight Sapphire",
+            value: "Blue",
+            img: "https://images.unsplash.com/photo-1583241800698-9dcb648f1d73?q=80&w=500&auto=format&fit=crop",
+            price: 33.00,
+            stock: "Limited Allocation Left"
+        }
+        ]
+    },
+    reviews: [
+        { stars: 5, author: "Natalie W.", text: "Sharp lines every time." }
+    ]
+},
+            {
+    id: "prod-bronzer-luxe",
+    category: "Blushes",
+    vendor: "AURA LUXE MAISON",
+    title: "Sunlit Bronze Sculpt Powder",
+    price: 48.00,
+    oldPrice: 55.00,
+    defaultImg: "https://images.unsplash.com/photo-1631214540242-4b0c5f3f9e7e?q=80&w=500&auto=format&fit=crop",
+    description: "Silky bronzing powder for natural warmth and contour definition.",
+    variants: {
+        type: "shades",
+        values: [
+            { name: "Golden Bronze", value: "#b07a50", img: "https://images.unsplash.com/photo-1631214540242-4b0c5f3f9e7e?q=80&w=500&auto=format&fit=crop", price: 48.00, stock: "In Stock" },
+            {
+            name: "Warm Sand",
+            value: "#c89563",
+            img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=500&auto=format&fit=crop",
+            price: 50.00,
+            stock: "In Stock"
+        },
+        {
+            name: "Deep Caramel",
+            value: "#8b5a2b",
+            img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=500&auto=format&fit=crop",
+            price: 52.00,
+            stock: "Limited Allocation Left"
+        }
+        ]
+    },
+    reviews: [
+        { stars: 4, author: "Luna H.", text: "Smooth blending and beautiful finish." }
+    ]
+},
+            {
+    id: "prod-gloss-crystal",
+    category: "Lipstick",
+    vendor: "AURA LUXE MAISON",
+    title: "Crystal Shine Lip Gloss",
+    price: 32.00,
+    oldPrice: null,
+    defaultImg: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=500&auto=format&fit=crop",
+    description: "High-shine lip gloss delivering hydration and glass-like brilliance.",
+    variants: {
+        type: "shades",
+        values: [
+            { name: "Rose Crystal", value: "#d88a9a", img: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=500&auto=format&fit=crop", price: 32.00, stock: "In Stock" },
+            {
+            name: "Cherry Sparkle",
+            value: "#c54f65",
+            img: "https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?q=80&w=500&auto=format&fit=crop",
+            price: 34.00,
+            stock: "In Stock"
+        },
+        {
+            name: "Berry Luxe",
+            value: "#7c3048",
+            img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=500&auto=format&fit=crop",
+            price: 36.00,
+            stock: "Limited Allocation Left"
+        }
+        ]
+    },
+    reviews: [
+        { stars: 5, author: "Amelia P.", text: "Perfect glossy finish." }
+    ]
+},
+            {
+    id: "prod-primer-air",
+    category: "Foundations",
+    vendor: "AURA LUXE FORMULATIONS",
+    title: "Air Blur Perfecting Primer",
+    price: 44.00,
+    oldPrice: 52.00,
+    defaultImg: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=500&auto=format&fit=crop",
+    description: "Lightweight pore-blurring primer for smooth makeup application.",
+    variants: {
+        type: "size",
+        values: [
+            { name: "50ml", value: "50ml", img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=500&auto=format&fit=crop", price: 44.00, stock: "In Stock" }
+        ]
+    },
+    reviews: [
+        { stars: 5, author: "Olivia K.", text: "Creates an incredibly smooth base." }
+    ]
+},
+            {
+    id: "prod-highlight-diamond",
+    category: "Blushes",
+    vendor: "AURA LUXE MAISON",
+    title: "Diamond Veil Highlighter",
+    price: 46.00,
+    oldPrice: 58.00,
+    defaultImg: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=500&auto=format&fit=crop",
+    description: "Finely milled highlighter creating a radiant diamond-like glow.",
+    variants: {
+        type: "shades",
+        values: [
+            { name: "Champagne Light", value: "#f3d8b2", img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=500&auto=format&fit=crop", price: 46.00, stock: "In Stock" },
+             {
+            name: "Rose Gold Glow",
+            value: "#e7b7a4",
+            img: "https://images.unsplash.com/photo-1631730359575-38e4755d772b?q=80&w=500&auto=format&fit=crop",
+            price: 48.00,
+            stock: "In Stock"
+        },
+        {
+            name: "Moonlit Pearl",
+            value: "#f7efe5",
+            img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=500&auto=format&fit=crop",
+            price: 50.00,
+            stock: "Limited Allocation Left"
+        }
+        ]
+    },
+    reviews: [
+        { stars: 5, author: "Grace T.", text: "Beautiful luminous finish." }
+    ]
+}
         ];
 
         const APP_BLOGS = [
@@ -2124,31 +2376,61 @@
             renderAccountOrderLedger();
         });
 
+  let pageHistory = [];
+
         /* SINGLE PAGE NAVIGATION ROUTER ARCHITECTURE WITH COMPONENT SWAPS */
-        function navigateTo(targetSectionId) {
-            // Close dynamic drawer panels safely
-            toggleMinicart(false);
-            
-            // Manage UI active section flags
-            document.querySelectorAll(".page-section").forEach(sec => sec.classList.remove("active-section"));
-            const targetEl = document.getElementById(`section-${targetSectionId}`);
-            if(targetEl) targetEl.classList.add("active-section");
+function navigateTo(targetSectionId, addToHistory = true) {
+    
+    // Save current page before navigating
+    if(addToHistory){
+        const currentSection = document.querySelector(".page-section.active-section");
 
-            // Synch main global layout navigation link borders states
-            document.querySelectorAll(".nav-links a").forEach(link => link.classList.remove("active"));
-            const linkEl = document.getElementById(`nav-${targetSectionId}`);
-            if(linkEl) linkEl.classList.add("active");
+        if(currentSection){
+            const currentPage = currentSection.id.replace("section-", "");
 
-            // Page Specific Router Preparation Interventions
-            if (targetSectionId === 'cart') {
-                renderDedicatedCartPageLayout();
-            } else if (targetSectionId === 'checkout') {
-                renderSecureCheckoutSummaryLayout();
+            if(currentPage !== targetSectionId){
+                pageHistory.push(currentPage);
             }
-
-            // Bring user viewing frame posture instantly back to top elevation
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+    }
+
+    // Close dynamic drawer panels safely
+    toggleMinicart(false);
+
+    // Manage UI active section flags
+    document.querySelectorAll(".page-section")
+        .forEach(sec => sec.classList.remove("active-section"));
+
+    const targetEl = document.getElementById(`section-${targetSectionId}`);
+
+    if(targetEl) targetEl.classList.add("active-section");
+
+    const backBtn = document.getElementById("global-back-btn");
+
+    if(targetSectionId === 'home' || pageHistory.length === 0){
+        backBtn.style.display = 'none';
+    }else{
+        backBtn.style.display = 'block';
+    }
+
+    // Synch main global layout navigation link borders states
+    document.querySelectorAll(".nav-links a")
+        .forEach(link => link.classList.remove("active"));
+
+    const linkEl = document.getElementById(`nav-${targetSectionId}`);
+
+    if(linkEl) linkEl.classList.add("active");
+
+    // Page Specific Router Preparation Interventions
+    if (targetSectionId === 'cart') {
+        renderDedicatedCartPageLayout();
+    } else if (targetSectionId === 'checkout') {
+        renderSecureCheckoutSummaryLayout();
+    }
+
+    // Bring user viewing frame posture instantly back to top elevation
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
         /* BANNER SLIDER LOGICAL CONTROLLER */
         function moveSlide(directionStep) {
@@ -2369,7 +2651,17 @@
             if(val < 1) val = 1;
             input.value = val;
         }
+function goBack(){
 
+    if(pageHistory.length === 0){
+        navigateTo('home', false);
+        return;
+    }
+
+    const previousPage = pageHistory.pop();
+
+    navigateTo(previousPage, false);
+}
         /* CORE CART OPERATIONS WITH SLEEK SIDE-DRAWER ACTIONS AND GLOBAL METRIC SNAPS */
         function toggleMinicart(shouldShowState) {
             const overlay = document.getElementById("minicart-drawer-overlay-wrapper");

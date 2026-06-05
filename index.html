@@ -1,0 +1,2680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA LUXE | Premium Beauty E-Commerce</title>
+    <style>
+        /* Typography & Color Definitions - Soft Luxury Palette (Option A) */
+        @font-face {
+            font-family: 'Bahnschrift';
+            src: local('Bahnschrift'), system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --bg-pure-white: #ffffff;
+            --bg-off-white: #faf7f5;
+            --accent-nude-blush: #f4e3dc;
+            --accent-rose-muted: #e8cfc4;
+            --gold-highlight: #d4af37;
+            --gold-hover: #bda02b;
+            --text-charcoal: #1c1c1c;
+            --text-muted: #666666;
+            --border-light: #eaeaea;
+            --border-dark: #1c1c1c;
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font-main: 'Bahnschrift', system-ui, sans-serif;
+        }
+
+        /* Reset & Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-pure-white);
+            color: var(--text-charcoal);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        button {
+            font-family: var(--font-main);
+            cursor: pointer;
+            border: none;
+            background: none;
+            transition: var(--transition-smooth);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Layout Container utilities */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Shopify Style Announcement Bar */
+        .announcement-bar {
+            background-color: var(--text-charcoal);
+            color: var(--bg-pure-white);
+            text-align: center;
+            padding: 8px 10px;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Shopify Style Navigation Header */
+        header {
+            background-color: var(--bg-pure-white);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+            padding: 0 40px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            border-bottom: 2px solid var(--text-charcoal);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .action-btn {
+            font-size: 18px;
+            position: relative;
+            padding: 5px;
+        }
+
+        .cart-count-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background-color: var(--text-charcoal);
+            color: var(--bg-pure-white);
+            font-size: 10px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+        }
+
+        /* Section Visibility Controller */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active-section {
+            display: block;
+        }
+
+        /* Shopify-style Banner Slider Section */
+        .slider-viewport {
+            position: relative;
+            height: calc(100vh - 115px);
+            min-height: 500px;
+            background-color: var(--bg-off-white);
+            overflow: hidden;
+        }
+
+        .slide-container {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .slide {
+            width: 33.333%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.95);
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 10;
+            padding-left: 10%;
+            max-width: 600px;
+            color: var(--text-charcoal);
+        }
+
+        .slide-subtitle {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .slide-title {
+            font-size: 52px;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Shopify Buttons Aesthetics */
+        .shopify-btn {
+            display: inline-block;
+            background-color: var(--text-charcoal);
+            color: var(--bg-pure-white);
+            padding: 14px 36px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            border: 1px solid var(--text-charcoal);
+            transition: var(--transition-smooth);
+            text-align: center;
+        }
+
+        .shopify-btn:hover {
+            background-color: transparent;
+            color: var(--text-charcoal);
+        }
+
+        .shopify-btn-secondary {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--text-charcoal);
+            padding: 13px 35px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            border: 1px solid var(--text-charcoal);
+            transition: var(--transition-smooth);
+            text-align: center;
+        }
+
+        .shopify-btn-secondary:hover {
+            background-color: var(--text-charcoal);
+            color: var(--bg-pure-white);
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 15;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .slider-arrow:hover {
+            background-color: var(--bg-pure-white);
+        }
+
+        .arrow-left { left: 30px; }
+        .arrow-right { right: 30px; }
+
+        /* Categories Ribbon Section */
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title-wrap {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background-color: var(--gold-highlight);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .category-card {
+            position: relative;
+            overflow: hidden;
+            height: 420px;
+            cursor: pointer;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .category-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            height: 50%;
+        }
+
+        .category-name {
+            color: var(--bg-pure-white);
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .category-link {
+            color: var(--bg-pure-white);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--bg-pure-white);
+            padding-bottom: 2px;
+        }
+
+        /* Products Grid Layout (Shopify Style Collection Views) */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--bg-pure-white);
+            transition: var(--transition-smooth);
+        }
+
+        .product-image-container {
+            position: relative;
+            height: 380px;
+            overflow: hidden;
+            background-color: var(--bg-off-white);
+            margin-bottom: 15px;
+        }
+
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badge-sale {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: #ba7a74;
+            color: white;
+            font-size: 11px;
+            padding: 4px 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .product-quick-add {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: translateY(100%);
+            transition: var(--transition-smooth);
+        }
+
+        .product-card:hover .product-quick-add {
+            transform: translateY(0);
+        }
+
+        .quick-add-btn {
+            width: 100%;
+            background-color: rgba(28, 28, 28, 0.9);
+            color: var(--bg-pure-white);
+            padding: 12px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .quick-add-btn:hover {
+            background-color: var(--text-charcoal);
+        }
+
+        .product-meta {
+            text-align: left;
+        }
+
+        .product-vendor {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .product-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-charcoal);
+        }
+
+        .product-price-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+        }
+
+        .price-current {
+            font-weight: bold;
+        }
+
+        .price-old {
+            color: var(--text-muted);
+            text-decoration: line-through;
+            font-size: 13px;
+        }
+
+        /* Shades Indicator Circle Preview */
+        .card-shades-preview {
+            display: flex;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .shade-dot-preview {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        /* Product Detail Page (PDP) Layout */
+        .pdp-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .pdp-gallery-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .pdp-main-img-box {
+            background-color: var(--bg-off-white);
+            height: 600px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .pdp-main-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pdp-details-box {
+            padding-top: 10px;
+        }
+
+        .pdp-vendor {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .pdp-title {
+            font-size: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .pdp-price-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 22px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 20px;
+        }
+
+        .pdp-variant-selector-group {
+            margin-bottom: 25px;
+        }
+
+        .variant-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .variant-label span {
+            font-weight: normal;
+            color: var(--text-muted);
+            text-transform: none;
+            margin-left: 5px;
+        }
+
+        .shades-flex {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .shade-option-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            box-shadow: 0 0 0 1px #ccc;
+            padding: 2px;
+        }
+
+        .shade-option-btn.selected-variant {
+            box-shadow: 0 0 0 2px var(--text-charcoal);
+        }
+
+        .shade-option-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        .size-flex {
+            display: flex;
+            gap: 10px;
+        }
+
+        .size-option-tile {
+            border: 1px solid var(--border-light);
+            padding: 10px 20px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .size-option-tile.selected-variant {
+            border: 2px solid var(--text-charcoal);
+            background-color: var(--bg-off-white);
+        }
+
+        .pdp-stock-status {
+            font-size: 14px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .stock-indicator-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #4caf50;
+        }
+
+        .pdp-actions-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .quantity-controller {
+            display: flex;
+            border: 1px solid var(--border-dark);
+            align-items: center;
+            width: 120px;
+            justify-content: space-between;
+        }
+
+        .quantity-controller button {
+            width: 35px;
+            height: 100%;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .quantity-controller input {
+            width: 40px;
+            text-align: center;
+            border: none;
+            font-family: var(--font-main);
+            font-size: 15px;
+            font-weight: bold;
+            background: transparent;
+        }
+
+        .pdp-add-btn {
+            flex: 1;
+            height: 52px;
+        }
+
+        .pdp-description-accordion {
+            border-top: 1px solid var(--border-light);
+            padding-top: 20px;
+        }
+
+        .pdp-desc-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        /* Review Module Style */
+        .reviews-header {
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .review-card {
+            border-bottom: 1px solid var(--border-light);
+            padding: 15px 0;
+        }
+
+        .review-stars {
+            color: var(--gold-highlight);
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .review-author {
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        .review-comment {
+            font-size: 13.5px;
+            color: var(--text-muted);
+        }
+
+        /* Shopify Sliding Sleek Mini-Cart Drawer Panel */
+        .minicart-drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .minicart-drawer-overlay.drawer-open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .minicart-drawer {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            max-width: 100%;
+            height: 100%;
+            background-color: var(--bg-pure-white);
+            z-index: 1001;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+            transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .minicart-drawer-overlay.drawer-open .minicart-drawer {
+            right: 0;
+        }
+
+        .minicart-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .minicart-title {
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .minicart-close-btn {
+            font-size: 22px;
+            color: var(--text-charcoal);
+        }
+
+        .minicart-items-scrollable {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .minicart-item-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-light);
+            position: relative;
+        }
+
+        .minicart-item-img {
+            width: 80px;
+            height: 100px;
+            background-color: var(--bg-off-white);
+            border: 1px solid var(--border-light);
+        }
+
+        .minicart-item-info {
+            flex: 1;
+        }
+
+        .minicart-item-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 4px;
+            padding-right: 20px;
+        }
+
+        .minicart-item-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .minicart-item-price {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .minicart-item-remove {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .minicart-item-remove:hover {
+            color: #d9534f;
+        }
+
+        .minicart-footer-sticky {
+            border-top: 1px solid var(--border-light);
+            padding: 24px;
+            background-color: var(--bg-off-white);
+        }
+
+        .minicart-total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .minicart-disclaimer {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .minicart-action-btns-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Dedicated Cart Page Layout */
+        .cart-page-wrapper {
+            margin-top: 30px;
+        }
+
+        .cart-table-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            padding: 15px 0;
+            border-bottom: 2px solid var(--text-charcoal);
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .cart-page-item {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            align-items: center;
+            padding: 25px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .cart-page-product-cell {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .cart-page-product-cell img {
+            width: 90px;
+            height: 120px;
+            background-color: var(--bg-off-white);
+            border: 1px solid var(--border-light);
+        }
+
+        .cart-page-details h4 {
+            text-transform: uppercase;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        .cart-page-details p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .cart-page-remove-btn {
+            margin-top: 8px;
+            display: inline-block;
+            font-size: 12px;
+            color: #d9534f;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cart-summary-block {
+            margin-top: 40px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .cart-summary-box {
+            width: 400px;
+            background-color: var(--bg-off-white);
+            padding: 30px;
+            border: 1px solid var(--border-light);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .summary-row.total-row {
+            border-top: 1px solid var(--border-light);
+            padding-top: 15px;
+            font-weight: bold;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        /* Custom Non-JS Alert Delete Warning Popup Confirmation Modal */
+        .custom-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .custom-popup-overlay.popup-visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .custom-popup-box {
+            background-color: var(--bg-pure-white);
+            padding: 35px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-top: 4px solid var(--text-charcoal);
+        }
+
+        .popup-title {
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .popup-message {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .popup-actions-flex {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .popup-btn-confirm {
+            background-color: #d9534f;
+            color: white;
+            padding: 10px 20px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .popup-btn-cancel {
+            background-color: var(--bg-off-white);
+            color: var(--text-charcoal);
+            border: 1px solid var(--border-light);
+            padding: 10px 20px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        /* Checkout Page Layout Structure */
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            margin-top: 30px;
+        }
+
+        .checkout-form-section {
+            border-right: 1px solid var(--border-light);
+            padding-right: 50px;
+        }
+
+        .checkout-block-title {
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .form-row-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group-custom {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group-custom label {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .form-control-custom {
+            width: 100%;
+            height: 46px;
+            border: 1px solid var(--border-light);
+            padding: 0 15px;
+            font-family: var(--font-main);
+            font-size: 14px;
+            color: var(--text-charcoal);
+            background-color: var(--bg-pure-white);
+            transition: var(--transition-smooth);
+        }
+
+        .form-control-custom:focus {
+            border-color: var(--text-charcoal);
+        }
+
+        .order-summary-sidebar {
+            background-color: var(--bg-off-white);
+            padding: 35px;
+            border: 1px solid var(--border-light);
+            align-self: start;
+        }
+
+        .checkout-summary-item {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .checkout-summary-item img {
+            width: 50px;
+            height: 65px;
+            background-color: var(--bg-pure-white);
+            border: 1px solid var(--border-light);
+        }
+
+        .checkout-summary-meta {
+            flex: 1;
+        }
+
+        .checkout-summary-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .checkout-summary-variant {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .checkout-summary-price {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* Order Success Screen Layout */
+        .success-box {
+            text-align: center;
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 40px;
+            background-color: var(--bg-off-white);
+            border: 1px solid var(--border-light);
+        }
+
+        .success-icon {
+            font-size: 48px;
+            color: #4caf50;
+            margin-bottom: 20px;
+        }
+
+        /* Login & Sign Up Forms Styling */
+        .auth-container-max {
+            max-width: 480px;
+            margin: 50px auto;
+            border: 1px solid var(--border-light);
+            padding: 40px;
+            background-color: var(--bg-pure-white);
+        }
+
+        .auth-switch-prompt {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .auth-switch-prompt span {
+            color: var(--text-charcoal);
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* About Us Page Layout */
+        .about-grid-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text-column h3 {
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .about-text-column p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        /* Contact Us Page Layout */
+        .contact-grid-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info-card {
+            background-color: var(--bg-off-white);
+            padding: 40px;
+            border: 1px solid var(--border-light);
+        }
+
+        .contact-info-row {
+            margin-bottom: 25px;
+        }
+
+        .contact-info-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .contact-info-value {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Blog Page Layout Grid */
+        .blog-posts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .blog-card-item {
+            background-color: var(--bg-pure-white);
+        }
+
+        .blog-card-img-box {
+            height: 260px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            background-color: var(--bg-off-white);
+        }
+
+        .blog-card-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .blog-card-item:hover .blog-card-img-box img {
+            transform: scale(1.03);
+        }
+
+        .blog-date-author {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .blog-post-title {
+            font-size: 18px;
+            text-transform: uppercase;
+            font-weight: bold;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .blog-post-excerpt {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        /* My Account Customer Dashboard Area Layout */
+        .account-layout-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .account-sidebar-nav {
+            border-right: 1px solid var(--border-light);
+            padding-right: 20px;
+        }
+
+        .account-nav-list {
+            list-style: none;
+        }
+
+        .account-nav-item-btn {
+            width: 100%;
+            text-align: left;
+            padding: 12px 15px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            border-left: 3px solid transparent;
+            margin-bottom: 5px;
+        }
+
+        .account-nav-item-btn.active-tab-btn {
+            background-color: var(--bg-off-white);
+            border-left-color: var(--text-charcoal);
+            font-weight: bold;
+        }
+
+        .account-pane-content {
+            display: none;
+        }
+
+        .account-pane-content.active-pane {
+            display: block;
+        }
+
+        .orders-table-custom {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .orders-table-custom th {
+            text-align: left;
+            background-color: var(--bg-off-white);
+            padding: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: bold;
+            border-bottom: 2px solid var(--text-charcoal);
+        }
+
+        .orders-table-custom td {
+            padding: 15px 12px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .status-badge-pill {
+            display: inline-block;
+            padding: 4px 10px;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: bold;
+            border-radius: 2px;
+        }
+
+        .status-unfulfilled {
+            background-color: #fcf8e3;
+            color: #8a6d3b;
+        }
+
+        .address-card-tile {
+            border: 1px solid var(--border-light);
+            padding: 25px;
+            background-color: var(--bg-off-white);
+            max-width: 400px;
+        }
+
+        .address-name {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .info-card-text {
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        /* Footer Section Layout */
+        footer {
+            background-color: var(--bg-off-white);
+            border-top: 1px solid var(--border-light);
+            padding-top: 70px;
+            margin-top: 100px;
+        }
+
+        .footer-columns-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr 1.3fr;
+            gap: 40px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .footer-widget-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .footer-links-list {
+            list-style: none;
+        }
+
+        .footer-links-list li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links-list a {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links-list a:hover {
+            color: var(--text-charcoal);
+            padding-left: 2px;
+        }
+
+        .footer-about-text {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        /* Social Media Icons Styling */
+        .social-links-flex {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--text-charcoal);
+            color: var(--bg-pure-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            transition: var(--transition-smooth);
+        }
+
+        .social-icon-circle:hover {
+            transform: translateY(-3px);
+            background-color: var(--gold-highlight);
+        }
+
+        .newsletter-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .newsletter-form-box {
+            display: flex;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            height: 45px;
+            border: 1px solid var(--border-light);
+            border-right: none;
+            padding: 0 15px;
+            font-family: var(--font-main);
+            font-size: 13.5px;
+        }
+
+        .newsletter-submit-btn {
+            background-color: var(--text-charcoal);
+            color: var(--bg-pure-white);
+            padding: 0 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .footer-copyright-bar {
+            padding: 25px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Adaptive Responsiveness Breakpoints Media Queries */
+        @media (max-width: 1150px) {
+            .product-grid, .category-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .footer-columns-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .header-container {
+                padding: 0 20px;
+            }
+            .nav-links {
+                display: none; /* In production, a mobile panel triggers here */
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .pdp-grid, .checkout-grid, .about-grid-block, .contact-grid-block, .account-layout-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .checkout-form-section {
+                border-right: none;
+                padding-right: 0;
+            }
+            .product-grid, .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .blog-posts-grid {
+                grid-template-columns: 1fr;
+            }
+            .slide-title {
+                font-size: 36px;
+            }
+            .slider-viewport {
+                height: 460px;
+            }
+            .cart-table-header, .cart-page-item {
+                grid-template-columns: 1.5fr 1fr 1fr;
+            }
+            .cart-header-total, .cart-cell-total {
+                display: none;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .product-grid, .category-grid, .footer-columns-grid {
+                grid-template-columns: 1fr;
+            }
+            .category-card {
+                height: 320px;
+            }
+            .pdp-main-img-box {
+                height: 400px;
+            }
+            .pdp-actions-row {
+                flex-direction: column;
+            }
+            .quantity-controller {
+                width: 100%;
+                height: 45px;
+            }
+            .cart-table-header {
+                display: none;
+            }
+            .cart-page-item {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                text-align: center;
+            }
+            .cart-page-product-cell {
+                flex-direction: column;
+            }
+            .cart-summary-box {
+                width: 100%;
+            }
+            .form-row-split {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .footer-copyright-bar {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="announcement-bar">
+        Complimentary Luxury Velvet Pouch on Orders Over $75
+    </div>
+
+    <header>
+        <div class="header-container">
+            <button class="menu-toggle" aria-label="Open navigation menu">☰</button>
+            
+            <a onclick="navigateTo('home')" class="logo">AURA LUXE</a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a onclick="navigateTo('home')" id="nav-home" class="active">Home</a></li>
+                    <li><a onclick="loadCategoryPage('all')" id="nav-categories">Shop Makeup</a></li>
+                    <li><a onclick="navigateTo('blog')" id="nav-blog">Beauty Blog</a></li>
+                    <li><a onclick="navigateTo('about')" id="nav-about">Our Story</a></li>
+                    <li><a onclick="navigateTo('contact')" id="nav-contact">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a onclick="navigateTo('account')" class="action-btn" title="My Customer Account">
+                    👤
+                </a>
+                <button onclick="toggleMinicart(true)" class="action-btn" title="View Shopping Cart" aria-label="Shopping Cart">
+                    👜
+                    <span class="cart-count-badge" id="header-cart-count">3</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="section-home" class="page-section active-section">
+            <div class="slider-viewport">
+                <button class="slider-arrow arrow-left" onclick="moveSlide(-1)" aria-label="Previous slide">⟨</button>
+                <button class="slider-arrow arrow-right" onclick="moveSlide(1)" aria-label="Next slide">⟩</button>
+                <div class="slide-container" id="hero-slider-track">
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=1400&auto=format&fit=crop" class="slide-img" alt="Luxury cosmetics composition with satin backgrounds">
+                        <div class="slide-content">
+                            <p class="slide-subtitle">The Summer Collection</p>
+                            <h2 class="slide-title">Luminous Satin Radiance</h2>
+                            <a onclick="loadCategoryPage('all')" class="shopify-btn">Explore Now</a>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1400&auto=format&fit=crop" class="slide-img" alt="Close up view of application of rich crimson premium lipstick texture">
+                        <div class="slide-content">
+                            <p class="slide-subtitle">High Definition Pigments</p>
+                            <h2 class="slide-title">Velvet Matte Editorial Lips</h2>
+                            <a onclick="loadCategoryPage('Lipstick')" class="shopify-btn">Shop Lipsticks</a>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1400&auto=format&fit=crop" class="slide-img" alt="Luxury collection of cosmetic powders and foundations on soft background layout">
+                        <div class="slide-content">
+                            <p class="slide-subtitle">Flawless Fluid Foundations</p>
+                            <h2 class="slide-title">True Match Second-Skin Bases</h2>
+                            <a onclick="loadCategoryPage('Foundations')" class="shopify-btn">Find Your Shade</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-padding var-bg-light">
+                <div class="container">
+                    <div class="section-title-wrap">
+                        <h3 class="section-title">Curated Collections</h3>
+                    </div>
+                    <div class="category-grid" id="homepage-category-ribbon">
+                        </div>
+                </div>
+            </div>
+
+            <div class="section-padding">
+                <div class="container">
+                    <div class="section-title-wrap">
+                        <h3 class="section-title">Trending Essentials</h3>
+                    </div>
+                    <div class="product-grid" id="homepage-featured-products">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="section-categories" class="page-section">
+            <div class="section-padding">
+                <div class="container">
+                    <div class="section-title-wrap">
+                        <h2 class="section-title" id="category-page-title">All Elite Makeup Collections</h2>
+                    </div>
+                    <div class="product-grid" id="category-products-container">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="section-pdp" class="page-section">
+            <div class="section-padding">
+                <div class="container">
+                    <div class="pdp-grid" id="dynamic-pdp-container">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="section-cart" class="page-section">
+            <div class="section-padding">
+                <div class="container">
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">Your Shopping Bag</h2>
+                    </div>
+                    <div class="cart-page-wrapper" id="cart-page-content-target">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="section-checkout" class="page-section">
+            <div class="section-padding">
+                <div class="container">
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">Secure Shopify Gateway checkout</h2>
+                    </div>
+                    <div class="checkout-grid">
+                        <div class="checkout-form-section">
+                            <form id="checkout-native-form" onsubmit="executeOrderPlacement(event)">
+                                <div class="checkout-block-title">Customer Contact Details</div>
+                                <div class="form-group-custom">
+                                    <label for="chk-email">Email Address</label>
+                                    <input type="email" id="chk-email" class="form-control-custom" value="sophia.vance@luxurymail.com" required>
+                                </div>
+                                
+                                <div class="checkout-block-title">Shipping Location Destination</div>
+                                <div class="form-row-split">
+                                    <div class="form-group-custom">
+                                        <label for="chk-fname">First Name</label>
+                                        <input type="text" id="chk-fname" class="form-control-custom" value="Sophia" required>
+                                    </div>
+                                    <div class="form-group-custom">
+                                        <label for="chk-lname">Last Name</label>
+                                        <input type="text" id="chk-lname" class="form-control-custom" value="Vance" required>
+                                    </div>
+                                </div>
+                                <div class="form-group-custom">
+                                    <label for="chk-address">Street Address</label>
+                                    <input type="text" id="chk-address" class="form-control-custom" value="742 Evergreen Premium Promenade, Penthouse B" required>
+                                </div>
+                                <div class="form-row-split">
+                                    <div class="form-group-custom">
+                                        <label for="chk-city">City</label>
+                                        <input type="text" id="chk-city" class="form-control-custom" value="Beverly Hills" required>
+                                    </div>
+                                    <div class="form-group-custom">
+                                        <label for="chk-zip">ZIP Postal Code</label>
+                                        <input type="text" id="chk-zip" class="form-control-custom" value="90210" required>
+                                    </div>
+                                </div>
+
+                                <div class="checkout-block-title" style="margin-top:20px;">Vaulted Luxury Payment Simulation</div>
+                                <div class="form-group-custom">
+                                    <label for="chk-card">Card Number (Sandbox Simulation Mode)</label>
+                                    <input type="text" id="chk-card" class="form-control-custom" value="4111 •••• •••• 8842" placeholder="4111 2222 3333 4444" required>
+                                </div>
+                                <button type="submit" class="shopify-btn" style="width: 100%; height: 50px; margin-top:10px;">Authorize & Complete Order Payment</button>
+                            </form>
+                        </div>
+                        
+                        <div class="order-summary-sidebar" id="checkout-sidebar-summary-target">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="section-account" class="page-section">
+            <div class="section-padding">
+                <div class="container">
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">Customer Portal Dashboard</h2>
+                        <p style="color:var(--text-muted); margin-top: 10px;">Welcome back, Sophia Vance</p>
+                    </div>
+                    
+                    <div class="account-layout-grid">
+                        <aside class="account-sidebar-nav">
+                            <ul class="account-nav-list">
+                                <li><button class="account-nav-item-btn active-tab-btn" onclick="switchAccountTab('orders', this)">My Order Records</button></li>
+                                <li><button class="account-nav-item-btn" onclick="switchAccountTab('addresses', this)">Saved Address Book</button></li>
+                                <li><button class="account-nav-item-btn" onclick="switchAccountTab('info', this)">Account Profile Information</button></li>
+                            </ul>
+                        </aside>
+                        
+                        <div class="account-panes-viewport">
+                            <div id="pane-orders" class="account-pane-content active-pane">
+                                <h3 style="text-transform:uppercase; font-size:16px; margin-bottom:20px; letter-spacing:1px;">Purchase Ledger History</h3>
+                                <table class="orders-table-custom">
+                                    <thead>
+                                        <tr>
+                                            <th>Reference Order</th>
+                                            <th>Placement Date</th>
+                                            <th>Fulfillment Log</th>
+                                            <th>Invoiced Amount Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="account-orders-table-rows">
+                                        </tbody>
+                                </table>
+                            </div>
+
+                            <div id="pane-addresses" class="account-pane-content">
+                                <h3 style="text-transform:uppercase; font-size:16px; margin-bottom:20px; letter-spacing:1px;">Primary Default Shipping Coordinates</h3>
+                                <div class="address-card-tile">
+                                    <p class="address-name">Sophia Vance (Primary Corporate Residence)</p>
+                                    <p class="info-card-text">742 Evergreen Premium Promenade</p>
+                                    <p class="info-card-text">Penthouse Suite B</p>
+                                    <p class="info-card-text">Beverly Hills, California, 90210</p>
+                                    <p class="info-card-text">United States of America</p>
+                                    <p class="info-card-text" style="margin-top: 15px; font-size:13px; color:var(--text-muted);">Contact Line: +1 (310) 555-8941</p>
+                                </div>
+                            </div>
+
+                            <div id="pane-info" class="account-pane-content">
+                                <h3 style="text-transform:uppercase; font-size:16px; margin-bottom:20px; letter-spacing:1px;">Profile Credentials Detail</h3>
+                                <div style="max-width: 500px; background-color: var(--bg-off-white); padding:30px; border:1px solid var(--border-light);">
+                                    <p class="info-card-text"><strong>Full Registered Identity Name:</strong> Sophia Vance</p>
+                                    <p class="info-card-text"><strong>Electronic Mail Communication:</strong> sophia.vance@luxurymail.com</p>
+                                    <p class="info-card-text"><strong>Portal Membership Class Tier:</strong> Platinum VVIP Elite Tier Member</p>
+                                    <p class="info-card-text"><strong>Account Authentication Security:</strong> Password encrypted security token verified</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="section-blog" class="page-section">
+            <div class="section-padding">
+                <div class="container">
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">The Aura Luxe Editorial Journal</h2>
+                    </div>
+                    <div class="blog-posts-grid" id="editorial-blog-container">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="section-about" class="page-section">
+            <div class="section-padding">
+                <div class="container">
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">The Genesis of Luxury Beauty</h2>
+                    </div>
+                    <div class="about-grid-block">
+                        <div class="about-img-column">
+                            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=800&auto=format&fit=crop" style="width:100%; height:500px; object-fit:cover;" alt="Professional elite luxury makeup application behind the scenes studio lighting setup">
+                        </div>
+                        <div class="about-text-column">
+                            <h3>Redefining Cosmetic Elegance</h3>
+                            <p>Established globally in the high fashion landscape, Aura Luxe was founded to dismantle the divide between high-performance clean cosmetics and sensory luxury textures. Every formula curated leaves a signature imprint of light-weight, intense color payoff performance designed intentionally for timeless longevity.</p>
+                            <p>We work concurrently alongside the world’s elite formulation cosmetic chemists to strip out chalky binders, harsh synthetic chemical fillers, and unstable preservation blocks, substituting them with active botanical cellular complexes that nurture dermal moisture profiles.</p>
+                            <p>Our commitment remains absolute: Uncompromised premium purity, ethical clinical testing methodologies, and architectural luxury silhouettes that reflect like rare art arrays on your dressing display panels.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="section-contact" class="page-section">
+            <div class="section-padding">
+                <div class="container">
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">Connect with Aura Concierge</h2>
+                    </div>
+                    <div class="contact-grid-block">
+                        <div class="contact-info-card">
+                            <h3 style="text-transform:uppercase; font-size:16px; margin-bottom:25px; letter-spacing:1px;">Maison Headquarters Contact Coordinates</h3>
+                            <div class="contact-info-row">
+                                <p class="contact-info-label">Direct Voice Communication Line</p>
+                                <p class="contact-info-value">+1 (800) AURA-LUXE [2872-5893]</p>
+                            </div>
+                            <div class="contact-info-row">
+                                <p class="contact-info-label">Corporate Inquiries Correspondence</p>
+                                <p class="contact-info-value">concierge@auraluxebeauty.com</p>
+                            </div>
+                            <div class="contact-info-row">
+                                <p class="contact-info-label">Maison Corporate Center Address Location</p>
+                                <p class="contact-info-value">Fifth Avenue Luxury Tower, Suite 900, New York, NY 10011</p>
+                            </div>
+                        </div>
+                        <div>
+                            <form onsubmit="event.preventDefault(); alert('Your message has been securely submitted to our Concierge Team. Expect a response within 12 hours.'); this.reset();">
+                                <div class="form-group-custom">
+                                    <label for="ct-name">Your Full Identity Name</label>
+                                    <input type="text" id="ct-name" class="form-control-custom" placeholder="Sophia Vance" required>
+                                </div>
+                                <div class="form-group-custom">
+                                    <label for="ct-email">Your Electronic Communication Mail</label>
+                                    <input type="email" id="ct-email" class="form-control-custom" placeholder="sophia.vance@luxurymail.com" required>
+                                </div>
+                                <div class="form-group-custom">
+                                    <label for="ct-msg">Your Detailed Message Inquiry Dossier</label>
+                                    <textarea id="ct-msg" class="form-control-custom" style="height:120px; padding:15px; resize:none;" placeholder="How can our specialist support team assist you today?" required></textarea>
+                                </div>
+                                <button type="submit" class="shopify-btn" style="width:100%;">Transmit Message Dossier</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="minicart-drawer-overlay" id="minicart-drawer-overlay-wrapper" onclick="closeDrawerOutsideClick(event)">
+        <div class="minicart-drawer" id="minicart-drawer-body">
+            <div class="minicart-header">
+                <span class="minicart-title">Shopping Cart Drawer</span>
+                <button class="minicart-close-btn" onclick="toggleMinicart(false)">✕</button>
+            </div>
+            
+            <div class="minicart-items-scrollable" id="minicart-items-target">
+                </div>
+            
+            <div class="minicart-footer-sticky">
+                <div class="minicart-total-row">
+                    <span>Est. Cart Subtotal</span>
+                    <span id="minicart-subtotal-value">$0.00</span>
+                </div>
+                <p class="minicart-disclaimer">Shipping costs, taxes, and promotional loyalty codes are calculated accurately inside the secure checkout phase portal.</p>
+                <div class="minicart-action-btns-stack">
+                    <button onclick="navigateTo('cart')" class="shopify-btn-secondary">View Complete Detailed Bag</button>
+                    <button onclick="navigateTo('checkout')" class="shopify-btn">Proceed Direct To Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="custom-popup-overlay" id="custom-delete-popup-modal">
+        <div class="custom-popup-box">
+            <h4 class="popup-title">Remove Item from Bag</h4>
+            <p class="popup-message">Are you completely certain you want to purge this premium selection out from your ongoing luxury order allocation list?</p>
+            <div class="popup-actions-flex">
+                <button class="popup-btn-confirm" id="popup-confirm-delete-action-btn">Confirm Purge Removal</button>
+                <button class="popup-btn-cancel" onclick="hideCustomDeletePopup()">Cancel Retention</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-columns-grid">
+                <div>
+                    <h4 class="footer-widget-title">AURA LUXE</h4>
+                    <p class="footer-about-text">An architectural canvas of elite formulation beauty items designed with timeless luxury elements.</p>
+                    <div class="social-links-flex">
+                        <a href="https://instagram.com" target="_blank" class="social-icon-circle" title="Follow Aura Luxe on Instagram">IG</a>
+                        <a href="https://facebook.com" target="_blank" class="social-icon-circle" title="Follow Aura Luxe on Facebook">FB</a>
+                        <a href="https://pinterest.com" target="_blank" class="social-icon-circle" title="Follow Aura Luxe on Pinterest">PT</a>
+                        <a href="https://youtube.com" target="_blank" class="social-icon-circle" title="Follow Aura Luxe on YouTube">YT</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-widget-title">The Boutique Collections</h4>
+                    <ul class="footer-links-list">
+                        <li><a onclick="loadCategoryPage('Lipstick')">Elite Lipsticks Collection</a></li>
+                        <li><a onclick="loadCategoryPage('Foundations')">Perfect Fluid Foundations</a></li>
+                        <li><a onclick="loadCategoryPage('Eyeshadow Palettes')">Pigmented Eyeshadow Palettes</a></li>
+                        <li><a onclick="loadCategoryPage('Blushes')">Luminous Silk Cheek Blushes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-widget-title">Customer Concierge</h4>
+                    <ul class="footer-links-list">
+                        <li><a onclick="navigateTo('contact')">Track Luxury Shipment</a></li>
+                        <li><a onclick="navigateTo('about')">Return Policies Protocol</a></li>
+                        <li><a onclick="navigateTo('contact')">Corporate Support Concierge</a></li>
+                        <li><a onclick="navigateTo('account')">VVIP Loyalty Club Access</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-widget-title">The Aura Gazette</h4>
+                    <p class="newsletter-desc">Subscribe to unlock premium VVIP access allocations, luxury formulation secrets, and early launch invitations.</p>
+                    <div class="newsletter-form-box">
+                        <input type="email" class="newsletter-input" placeholder="Enter exclusive email address" required aria-label="Email Address for Gazette Newsletter">
+                        <button class="newsletter-submit-btn" onclick="alert('Congratulations. You have been granted secure subscription admission into the Aura Gazette distribution list.');">Enroll</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-copyright-bar">
+                <div>&copy; 2026 Aura Luxe Elite Beauty Inc. All Rights Reserved. Powered by Shopify Framework Standards Architecture.</div>
+                <div style="display:flex; gap:15px; font-size:11px;">
+                    <a style="cursor:default">Maison Privacy Accord</a>
+                    <a style="cursor:default">Operational Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* NATIVE INITIAL DATA OBJECT ARRAYS (SANDBOX INVENTORY MODEL) */
+        const APP_CATEGORIES = [
+            { id: "Lipstick", name: "Lipsticks & Tinted Shades", img: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=500&auto=format&fit=crop" },
+            { id: "Foundations", name: "Bases & Liquid Foundations", img: "https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?q=80&w=500&auto=format&fit=crop" },
+            { id: "Eyeshadow Palettes", name: "Eyeshadow Chromatic Palettes", img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=500&auto=format&fit=crop" },
+            { id: "Blushes", name: "Luminous Silk Cheek Blushes", img: "https://images.unsplash.com/photo-1631730359575-38e4755d772b?q=80&w=500&auto=format&fit=crop" }
+        ];
+
+        const APP_PRODUCTS = [
+            {
+                id: "prod-lip-velvet",
+                category: "Lipstick",
+                vendor: "AURA LUXE MAISON",
+                title: "Velvet Satin Sovereign Matte Lipstick",
+                price: 38.00,
+                oldPrice: 45.00,
+                defaultImg: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=500&auto=format&fit=crop",
+                description: "An architectural wonder weapon packed with saturated pigment payloads. Infused with wild-harvested French orchid cellular extract oils for elite conditioning wear runtime.",
+                variants: {
+                    type: "shades",
+                    values: [
+                        { name: "Maison Crimson Rouge", value: "#990011", img: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=500&auto=format&fit=crop", price: 38.00, stock: "In Stock" },
+                        { name: "Blush Nude Cashmere", value: "#c78c7c", img: "https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?q=80&w=500&auto=format&fit=crop", price: 38.00, stock: "In Stock" },
+                        { name: "Imperial Mauve Satin", value: "#7a3e4d", img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=500&auto=format&fit=crop", price: 42.00, stock: "Limited Allocation Left" }
+                    ]
+                },
+                reviews: [
+                    { stars: 5, author: "Victoria B.", text: "The weightless feel matches perfectly with the insane dark-pigment duration value. Best architectural casing design ever." },
+                    { stars: 5, author: "Elena R.", text: "Doesn't bleed at all! Pure satin majesty." }
+                ]
+            },
+            {
+                id: "prod-found-hd",
+                category: "Foundations",
+                vendor: "AURA LUXE FORMULATIONS",
+                title: "Luminous Ether Second-Skin Fluid Foundation",
+                price: 54.00,
+                oldPrice: null,
+                defaultImg: "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=500&auto=format&fit=crop",
+                description: "An innovative oil-free breathable liquid matrix foundation providing medium-to-buildable complete coverage. Reflects structural light rays away to eliminate camera flash whitening anomalies.",
+                variants: {
+                    type: "shades",
+                    values: [
+                        { name: "Alabaster Aura Pearl", value: "#f7ebd3", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=500&auto=format&fit=crop", price: 54.00, stock: "In Stock" },
+                        { name: "Warm Honeycomb Nude", value: "#e3c194", img: "https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?q=80&w=500&auto=format&fit=crop", price: 54.00, stock: "In Stock" },
+                        { name: "Deep Amber Majesty", value: "#b07e54", img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=500&auto=format&fit=crop", price: 58.00, stock: "Backorder Ships in 4 Days" }
+                    ]
+                },
+                reviews: [
+                    { stars: 5, author: "Seraphina G.", text: "Literally invisible skin mimicry. My camera test parameters didn't capture any texturing layers. Astonishing fluid tech." }
+                ]
+            },
+            {
+                id: "prod-palette-chroma",
+                category: "Eyeshadow Palettes",
+                vendor: "AURA LUXE STUDIO",
+                title: "Imperial Chromatic 12-Pan Shadow Vault",
+                price: 68.00,
+                oldPrice: 85.00,
+                defaultImg: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=500&auto=format&fit=crop",
+                description: "Twelve meticulously structured pan layouts containing rich high-density mineral press formulations. Includes four diamond shifts, six buttery luxury mattes, and two metallic chromes.",
+                variants: {
+                    type: "size",
+                    values: [
+                        { name: "Signature 12-Pan Vault", value: "12-Pan Standard", price: 68.00, stock: "In Stock", img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=500&auto=format&fit=crop" },
+                        { name: "Maison Collector Professional Double Vault", value: "24-Pan Deluxe Pro", price: 110.00, stock: "VVIP Vetted Priority Allocation Only", img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=500&auto=format&fit=crop" }
+                    ]
+                },
+                reviews: [
+                    { stars: 5, author: "Julianne M.", text: "Fallout is non-existent. The dual shift formula transitions elegantly across light sources." }
+                ]
+            },
+            {
+                id: "prod-blush-silk",
+                category: "Blushes",
+                vendor: "AURA LUXE MAISON",
+                title: "Luminous Silk Velvet Infusion Cheek Blush",
+                price: 42.00,
+                oldPrice: null,
+                defaultImg: "https://images.unsplash.com/photo-1631730359575-38e4755d772b?q=80&w=500&auto=format&fit=crop",
+                description: "A micronized mineral baking matrix blush that fuses dynamically with warm dermal temperatures. Imparts a look of inner energetic blood flow vitality with soft diamond particulate glow vectors.",
+                variants: {
+                    type: "shades",
+                    values: [
+                        { name: "Blossom Petal Silk", value: "#e8a79b", img: "https://images.unsplash.com/photo-1631730359575-38e4755d772b?q=80&w=500&auto=format&fit=crop", price: 42.00, stock: "In Stock" },
+                        { name: "Gilded Orchid Flush", value: "#cf7a86", img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=500&auto=format&fit=crop", price: 42.00, stock: "In Stock" }
+                    ]
+                },
+                reviews: [
+                    { stars: 4, author: "Hanna T.", text: "Extremely clean build trajectory. A tiny dust on the brush goes incredibly far." }
+                ]
+            }
+        ];
+
+        const APP_BLOGS = [
+            {
+                title: "Architectural Mapping of Liquid Base Foundations",
+                author: "Dr. Genevieve Vance",
+                date: "May 28, 2026",
+                excerpt: "Discover the advanced cosmetic formulation physics dictating how fluid emulsions mimic human cell layer structures under digital camera arrays.",
+                img: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=400&auto=format&fit=crop"
+            },
+            {
+                title: "Saturated Red Lip Pigment Longevity Decoded",
+                author: "Maison Artistry Desk",
+                date: "April 14, 2026",
+                excerpt: "The master formulation guide explaining how botanical wax profiles sustain extreme color payloads without accelerating layer dehydration.",
+                img: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=400&auto=format&fit=crop"
+            },
+            {
+                title: "Summer Runway Luminous Highlight Transitions",
+                author: "Sasha Moreau",
+                date: "March 02, 2026",
+                excerpt: "Analyzing the transition out from traditional frosted powders into customized micro-shimmer silk oils for real world high-humidity settings.",
+                img: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=400&auto=format&fit=crop"
+            }
+        ];
+
+        // PRE-POPULATED INITIAL CUSTOMER ACCOUNT LOGS FOR SANDBOX COHESION
+        let CUSTOMER_ORDERS = [
+            { id: "AL-99824", date: "April 12, 2026", fulfillment: "Fulfilled & Dispatched", total: 144.00 },
+            { id: "AL-98711", date: "February 19, 2026", fulfillment: "Fulfilled & Archived", total: 68.00 }
+        ];
+
+        // GLOBAL TRACKING CART APPLICATION STATE LIVE RESOURCE ARRAY
+        let IN_MEMORY_CART = [
+            {
+                productId: "prod-lip-velvet",
+                variantTitle: "Maison Crimson Rouge",
+                selectedOptionVal: "#990011",
+                quantity: 1,
+                price: 38.00,
+                img: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=500&auto=format&fit=crop",
+                title: "Velvet Satin Sovereign Matte Lipstick"
+            },
+            {
+                productId: "prod-palette-chroma",
+                variantTitle: "Signature 12-Pan Vault",
+                selectedOptionVal: "12-Pan Standard",
+                quantity: 1,
+                price: 68.00,
+                img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=500&auto=format&fit=crop",
+                title: "Imperial Chromatic 12-Pan Shadow Vault"
+            }
+        ];
+
+        // CORE ACTIVE CONTEXT SYSTEM FOR MODALS INTERCEPTIONS
+        let CURRENT_HERO_SLIDE_INDEX = 0;
+        let STAGED_PURGE_INDEX_TARGET = null;
+
+        /* INITIALIZER ENTRY SYSTEM ROOT BOOTING */
+        window.addEventListener("DOMContentLoaded", () => {
+            renderHomepageCategoryRibbons();
+            renderFeaturedProductsRow();
+            renderEditorialJournalBlock();
+            recalculateGlobalCartMetrics();
+            renderAccountOrderLedger();
+        });
+
+        /* SINGLE PAGE NAVIGATION ROUTER ARCHITECTURE WITH COMPONENT SWAPS */
+        function navigateTo(targetSectionId) {
+            // Close dynamic drawer panels safely
+            toggleMinicart(false);
+            
+            // Manage UI active section flags
+            document.querySelectorAll(".page-section").forEach(sec => sec.classList.remove("active-section"));
+            const targetEl = document.getElementById(`section-${targetSectionId}`);
+            if(targetEl) targetEl.classList.add("active-section");
+
+            // Synch main global layout navigation link borders states
+            document.querySelectorAll(".nav-links a").forEach(link => link.classList.remove("active"));
+            const linkEl = document.getElementById(`nav-${targetSectionId}`);
+            if(linkEl) linkEl.classList.add("active");
+
+            // Page Specific Router Preparation Interventions
+            if (targetSectionId === 'cart') {
+                renderDedicatedCartPageLayout();
+            } else if (targetSectionId === 'checkout') {
+                renderSecureCheckoutSummaryLayout();
+            }
+
+            // Bring user viewing frame posture instantly back to top elevation
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* BANNER SLIDER LOGICAL CONTROLLER */
+        function moveSlide(directionStep) {
+            const track = document.getElementById("hero-slider-track");
+            CURRENT_HERO_SLIDE_INDEX += directionStep;
+            if(CURRENT_HERO_SLIDE_INDEX > 2) CURRENT_HERO_SLIDE_INDEX = 0;
+            if(CURRENT_HERO_SLIDE_INDEX < 0) CURRENT_HERO_SLIDE_INDEX = 2;
+            track.style.transform = `translateX(-${CURRENT_HERO_SLIDE_INDEX * 33.333}%)`;
+        }
+
+        // Auto-run slide movement loops under non-interfered periods
+        setInterval(() => {
+            moveSlide(1);
+        }, 8000);
+
+        /* DATA RENDER DOM ENGINE DISPATCHERS */
+        function renderHomepageCategoryRibbons() {
+            const target = document.getElementById("homepage-category-ribbon");
+            target.innerHTML = APP_CATEGORIES.map(cat => `
+                <div class="category-card" onclick="loadCategoryPage('${cat.id}')">
+                    <img src="${cat.img}" alt="Aura Luxe brand production for ${cat.name}">
+                    <div class="category-overlay">
+                        <span class="category-name">${cat.id}</span>
+                        <span class="category-link">Curate Selection</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderFeaturedProductsRow() {
+            const target = document.getElementById("homepage-featured-products");
+            target.innerHTML = APP_PRODUCTS.map(prod => generateProductCardMarkup(prod)).join('');
+        }
+
+        function renderEditorialJournalBlock() {
+            const target = document.getElementById("editorial-blog-container");
+            target.innerHTML = APP_BLOGS.map(post => `
+                <article class="blog-card-item">
+                    <div class="blog-card-img-box">
+                        <img src="${post.img}" alt="${post.title}">
+                    </div>
+                    <div class="blog-date-author">${post.date} • written by ${post.author}</div>
+                    <h4 class="blog-post-title">${post.title}</h4>
+                    <p class="blog-post-excerpt">${post.excerpt}</p>
+                    <a onclick="navigateTo('blog')" style="font-size:12px; font-weight:bold; text-transform:uppercase; border-bottom:1px solid #000; padding-bottom:2px;">Read Editorial</a>
+                </article>
+            `).join('');
+        }
+
+        function generateProductCardMarkup(productObj) {
+            let shadesDotsHtml = '';
+            if (productObj.variants.type === 'shades') {
+                shadesDotsHtml = `<div class="card-shades-preview">
+                    ${productObj.variants.values.map(v => `<span class="shade-dot-preview" style="background-color: ${v.value}"></span>`).join('')}
+                </div>`;
+            }
+            
+            const saleBadge = productObj.oldPrice ? `<span class="badge-sale">Exclusive Allocation</span>` : '';
+            const priceBlock = productObj.oldPrice 
+                ? `<span class="price-current">$${productObj.price.toFixed(2)}</span><span class="price-old">$${productObj.oldPrice.toFixed(2)}</span>`
+                : `<span class="price-current">$${productObj.price.toFixed(2)}</span>`;
+
+            return `
+                <div class="product-card">
+                    <div class="product-image-container">
+                        ${saleBadge}
+                        <img src="${productObj.defaultImg}" alt="${productObj.title}" onclick="loadProductDetailPage('${productObj.id}')" style="cursor:pointer;">
+                        <div class="product-quick-add">
+                            <button class="quick-add-btn" onclick="loadProductDetailPage('${productObj.id}')">Select Custom Variant Options</button>
+                        </div>
+                    </div>
+                    <div class="product-meta">
+                        <div class="product-vendor">${productObj.vendor}</div>
+                        <h4 class="product-title" onclick="loadProductDetailPage('${productObj.id}')" style="cursor:pointer;">${productObj.title}</h4>
+                        <div class="product-price-row">${priceBlock}</div>
+                        ${shadesDotsHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        /* COLLECTION ROUTING AND CATEGORIES LOGICS */
+        function loadCategoryPage(categoryScopeFilter) {
+            const sectionTarget = document.getElementById("section-categories");
+            const titleTarget = document.getElementById("category-page-title");
+            const gridTarget = document.getElementById("category-products-container");
+
+            navigateTo('categories');
+
+            let matchingProducts = [];
+            if(categoryScopeFilter === 'all') {
+                titleTarget.innerText = "All Elite Makeup Collections";
+                matchingProducts = APP_PRODUCTS;
+            } else {
+                titleTarget.innerText = `Premium ${categoryScopeFilter} Allocation`;
+                matchingProducts = APP_PRODUCTS.filter(p => p.category.toLowerCase() === categoryScopeFilter.toLowerCase());
+            }
+
+            gridTarget.innerHTML = matchingProducts.map(p => generateProductCardMarkup(p)).join('');
+        }
+
+        /* PRODUCT DETAIL PAGE (PDP) GENERATION ENGINE WITH LIVE DATA BINDS */
+        function loadProductDetailPage(productIdCode) {
+            const product = APP_PRODUCTS.find(p => p.id === productIdCode);
+            if(!product) return;
+
+            navigateTo('pdp');
+            const container = document.getElementById("dynamic-pdp-container");
+
+            // Setup working state initialization vectors for variant options tracking
+            let initialVariant = product.variants.values[0];
+
+            // Render absolute layout framework structural layout matching instructions
+            container.innerHTML = `
+                <div class="pdp-gallery-wrap">
+                    <div class="pdp-main-img-box">
+                        <img id="pdp-main-image-viewport" src="${initialVariant.img || product.defaultImg}" alt="${product.title}">
+                    </div>
+                </div>
+                
+                <div class="pdp-details-box">
+                    <div class="pdp-vendor">${product.vendor}</div>
+                    <h2 class="pdp-title">${product.title}</h2>
+                    
+                    <div class="pdp-price-box">
+                        <span id="pdp-price-display-box" style="font-weight: bold;">$${initialVariant.price.toFixed(2)}</span>
+                        ${product.oldPrice ? `<span style="font-size:15px; color:var(--text-muted); text-decoration:line-through;">$${product.oldPrice.toFixed(2)}</span>` : ''}
+                    </div>
+
+                    <div class="pdp-variant-selector-group">
+                        <label class="variant-label">Configured Selection: <span id="pdp-active-variant-text-label">${initialVariant.name}</span></label>
+                        <div class="${product.variants.type === 'shades' ? 'shades-flex' : 'size-flex'}" id="pdp-variant-interactive-nodes-container">
+                            </div>
+                    </div>
+
+                    <div class="pdp-stock-status">
+                        <span class="stock-indicator-dot"></span>
+                        <span id="pdp-stock-status-text-label">${initialVariant.stock}</span>
+                    </div>
+
+                    <div class="pdp-actions-row">
+                        <div class="quantity-controller">
+                            <button onclick="adjustPdpLocalQtyValue(-1)" aria-label="Decrease quantity">-</button>
+                            <input type="text" id="pdp-local-qty-input" value="1" readonly>
+                            <button onclick="adjustPdpLocalQtyValue(1)" aria-label="Increase quantity">+</button>
+                        </div>
+                        <button class="shopify-btn pdp-add-btn" onclick="executeAddToCartWorkflow('${product.id}')">Add Choice to Shopping Bag</button>
+                    </div>
+
+                    <div class="pdp-description-accordion">
+                        <h4 style="text-transform:uppercase; font-size:13px; margin-bottom:10px; letter-spacing:1px;">Maison Formulation Insights</h4>
+                        <p class="pdp-desc-text">${product.description}</p>
+                    </div>
+
+                    <div class="pdp-reviews-section-wrapper">
+                        <h4 class="reviews-header">Verified Patron Appraisals (${product.reviews.length})</h4>
+                        ${product.reviews.map(rev => `
+                            <div class="review-card">
+                                <div class="review-stars">${"★".repeat(rev.stars)}</div>
+                                <p class="review-author">${rev.author} • Verified Patron</p>
+                                <p class="review-comment">"${rev.text}"</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            // Draw interactive selection nodes mapping back onto click listener states updates
+            const nodesContainer = document.getElementById("pdp-variant-interactive-nodes-container");
+            
+            product.variants.values.forEach((v, index) => {
+                if(product.variants.type === 'shades') {
+                    const btn = document.createElement("button");
+                    btn.className = `shade-option-btn ${index === 0 ? 'selected-variant' : ''}`;
+                    btn.title = v.name;
+                    btn.innerHTML = `<div class="shade-option-inner" style="background-color: ${v.value}"></div>`;
+                    btn.onclick = () => updateActivePdpVariantSelectionState(product, v, btn);
+                    nodesContainer.appendChild(btn);
+                } else {
+                    const btn = document.createElement("button");
+                    btn.className = `size-option-tile ${index === 0 ? 'selected-variant' : ''}`;
+                    btn.innerText = v.value;
+                    btn.onclick = () => updateActivePdpVariantSelectionState(product, v, btn);
+                    nodesContainer.appendChild(btn);
+                }
+            });
+
+            // Anchor current active parameters globally to container dom values variables
+            container.dataset.selectedVariantName = initialVariant.name;
+            container.dataset.selectedVariantVal = initialVariant.value;
+            container.dataset.selectedVariantPrice = initialVariant.price;
+            container.dataset.selectedVariantImg = initialVariant.img || product.defaultImg;
+        }
+
+        function updateActivePdpVariantSelectionState(productObj, variantSubObj, clickedElement) {
+            const container = document.getElementById("dynamic-pdp-container");
+            
+            // Toggle dynamic classes across visual selector tokens array elements
+            clickedElement.parentElement.querySelectorAll("button").forEach(b => b.classList.remove("selected-variant"));
+            clickedElement.classList.add("selected-variant");
+
+            // Sync visual attributes
+            document.getElementById("pdp-main-image-viewport").src = variantSubObj.img || productObj.defaultImg;
+            document.getElementById("pdp-price-display-box").innerText = `$${variantSubObj.price.toFixed(2)}`;
+            document.getElementById("pdp-active-variant-text-label").innerText = variantSubObj.name;
+            document.getElementById("pdp-stock-status-text-label").innerText = variantSubObj.stock;
+
+            // Re-bind current data criteria markers parameters to DOM tracking dataset
+            container.dataset.selectedVariantName = variantSubObj.name;
+            container.dataset.selectedVariantVal = variantSubObj.value;
+            container.dataset.selectedVariantPrice = variantSubObj.price;
+            container.dataset.selectedVariantImg = variantSubObj.img || productObj.defaultImg;
+        }
+
+        function adjustPdpLocalQtyValue(deltaStep) {
+            const input = document.getElementById("pdp-local-qty-input");
+            let val = parseInt(input.value) + deltaStep;
+            if(val < 1) val = 1;
+            input.value = val;
+        }
+
+        /* CORE CART OPERATIONS WITH SLEEK SIDE-DRAWER ACTIONS AND GLOBAL METRIC SNAPS */
+        function toggleMinicart(shouldShowState) {
+            const overlay = document.getElementById("minicart-drawer-overlay-wrapper");
+            if(shouldShowState) {
+                renderMinicartDrawerItems();
+                overlay.classList.add("drawer-open");
+            } else {
+                overlay.classList.remove("drawer-open");
+            }
+        }
+
+        function closeDrawerOutsideClick(event) {
+            if(event.target.id === "minicart-drawer-overlay-wrapper") {
+                toggleMinicart(false);
+            }
+        }
+
+        function executeAddToCartWorkflow(productIdCode) {
+            const product = APP_PRODUCTS.find(p => p.id === productIdCode);
+            const pdpContainer = document.getElementById("dynamic-pdp-container");
+            const qty = parseInt(document.getElementById("pdp-local-qty-input").value);
+
+            const selectedVarName = pdpContainer.dataset.selectedVariantName;
+            const selectedVarVal = pdpContainer.dataset.selectedVariantVal;
+            const selectedVarPrice = parseFloat(pdpContainer.dataset.selectedVariantPrice);
+            const selectedVarImg = pdpContainer.dataset.selectedVariantImg;
+
+            // Check if match already present inside cart rows to merge indexes quantity
+            const duplicateIndex = IN_MEMORY_CART.findIndex(item => 
+                item.productId === productIdCode && item.variantTitle === selectedVarName
+            );
+
+            if(duplicateIndex > -1) {
+                IN_MEMORY_CART[duplicateIndex].quantity += qty;
+            } else {
+                IN_MEMORY_CART.push({
+                    productId: productIdCode,
+                    variantTitle: selectedVarName,
+                    selectedOptionVal: selectedVarVal,
+                    quantity: qty,
+                    price: selectedVarPrice,
+                    img: selectedVarImg,
+                    title: product.title
+                });
+            }
+
+            // Sync metrics and trigger immediate elegant side drawer notification slide out
+            recalculateGlobalCartMetrics();
+            toggleMinicart(true);
+        }
+
+        function recalculateGlobalCartMetrics() {
+            // Sum all item rows pieces
+            const sumQty = IN_MEMORY_CART.reduce((acc, curr) => acc + curr.quantity, 0);
+            const sumPrice = IN_MEMORY_CART.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
+
+            // Stamp global DOM markers labels
+            document.getElementById("header-cart-count").innerText = sumQty;
+            document.getElementById("minicart-subtotal-value").innerText = `$${sumPrice.toFixed(2)}`;
+        }
+
+        function renderMinicartDrawerItems() {
+            const target = document.getElementById("minicart-items-target");
+            if(IN_MEMORY_CART.length === 0) {
+                target.innerHTML = `<p style="text-align:center; padding: 40px 0; color: var(--text-muted);">Your selection allocation bag is empty.</p>`;
+                return;
+            }
+
+            target.innerHTML = IN_MEMORY_CART.map((item, index) => `
+                <div class="minicart-item-row">
+                    <img src="${item.img}" class="minicart-item-img" alt="${item.title}">
+                    <div class="minicart-item-info">
+                        <h5 class="minicart-item-title">${item.title}</h5>
+                        <p class="minicart-item-meta">Option: ${item.variantTitle} | Qty: ${item.quantity}</p>
+                        <p class="minicart-item-price">$${(item.price * item.quantity).toFixed(2)}</p>
+                    </div>
+                    <button class="minicart-item-remove" onclick="triggerPurgeModalSequence(${index}, 'minicart')" title="Purge item">✕</button>
+                </div>
+            `).join('');
+        }
+
+        /* DEDICATED FULL VIEW CART PAGE RENDER BINDINGS */
+        function renderDedicatedCartPageLayout() {
+            const target = document.getElementById("cart-page-content-target");
+            if(IN_MEMORY_CART.length === 0) {
+                target.innerHTML = `
+                    <div style="text-align:center; padding:60px 0;">
+                        <p style="color:var(--text-muted); margin-bottom:20px;">Your shopping cart is completely clear of allocation requests.</p>
+                        <a onclick="loadCategoryPage('all')" class="shopify-btn">Continue Exploring Boutique</a>
+                    </div>
+                `;
+                return;
+            }
+
+            const subtotal = IN_MEMORY_CART.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
+
+            let tableRowsHtml = IN_MEMORY_CART.map((item, index) => `
+                <div class="cart-page-item">
+                    <div class="cart-page-product-cell">
+                        <img src="${item.img}" alt="${item.title}">
+                        <div class="cart-page-details">
+                            <h4>${item.title}</h4>
+                            <p>Variant Parameter: ${item.variantTitle}</p>
+                            <button class="cart-page-remove-btn" onclick="triggerPurgeModalSequence(${index}, 'fullcart')">Purge Item</button>
+                        </div>
+                    </div>
+                    <div class="cart-cell-price" style="font-weight:600;">$${item.price.toFixed(2)}</div>
+                    <div class="cart-cell-qty">
+                        <div class="quantity-controller" style="height:35px; width:100px; margin:0 auto;">
+                            <button onclick="adjustFullCartRowQty(${index}, -1)">-</button>
+                            <input type="text" value="${item.quantity}" readonly style="font-size:13px;">
+                            <button onclick="adjustFullCartRowQty(${index}, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="cart-cell-total" style="font-weight:bold; text-align:right;">$${(item.price * item.quantity).toFixed(2)}</div>
+                </div>
+            `).join('');
+
+            target.innerHTML = `
+                <div class="cart-table-header">
+                    <span>Selected Product Item</span>
+                    <span style="text-align:center;">Maison Base Cost</span>
+                    <span style="text-align:center;">Quantity Profile</span>
+                    <span style="text-align:right;" class="cart-header-total">Allocation Subtotal</span>
+                </div>
+                <div class="cart-items-rows-container">
+                    ${tableRowsHtml}
+                </div>
+                <div class="cart-summary-block">
+                    <div class="cart-summary-box">
+                        <div class="summary-row">
+                            <span>Maison Value Subtotal</span>
+                            <span>$${subtotal.toFixed(2)}</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Secure Insured Shipping</span>
+                            <span style="color:#4caf50; font-size:12px; font-weight:bold; text-transform:uppercase;">Complimentary Luxury Tier</span>
+                        </div>
+                        <div class="summary-row total-row">
+                            <span>Invoiced Total Value</span>
+                            <span>$${subtotal.toFixed(2)}</span>
+                        </div>
+                        <button onclick="navigateTo('checkout')" class="shopify-btn" style="width:100%; margin-top:15px; height:48px;">Proceed to Gateway Secure Checkout</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function adjustFullCartRowQty(itemIndex, deltaStep) {
+            let targetRow = IN_MEMORY_CART[itemIndex];
+            targetRow.quantity += deltaStep;
+            if(targetRow.quantity < 1) targetRow.quantity = 1;
+            
+            recalculateGlobalCartMetrics();
+            renderDedicatedCartPageLayout();
+        }
+
+        /* CUSTOM IN-WINDOW POPUP REPLACING JS DEPRECATED ALERTS */
+        let POPUP_CONTEXT_CALLER = 'minicart';
+
+        function triggerPurgeModalSequence(arrayIndex, originCallerContext) {
+            STAGED_PURGE_INDEX_TARGET = arrayIndex;
+            POPUP_CONTEXT_CALLER = originCallerContext;
+            
+            const modal = document.getElementById("custom-delete-popup-modal");
+            modal.classList.add("popup-visible");
+
+            // Attach dynamic processing routing straight to continuous action button nodes pointer
+            document.getElementById("popup-confirm-delete-action-btn").onclick = executeStagedItemPurgeAction;
+        }
+
+        function hideCustomDeletePopup() {
+            document.getElementById("custom-delete-popup-modal").classList.remove("popup-visible");
+            STAGED_PURGE_INDEX_TARGET = null;
+        }
+
+        function executeStagedItemPurgeAction() {
+            if(STAGED_PURGE_INDEX_TARGET !== null) {
+                // Delete element slice from main tracker array
+                IN_MEMORY_CART.splice(STAGED_PURGE_INDEX_TARGET, 1);
+                
+                // Synchronize global metric badges indicators
+                recalculateGlobalCartMetrics();
+                hideCustomDeletePopup();
+
+                // Direct layout redraw states based on context conditions
+                if(POPUP_CONTEXT_CALLER === 'minicart') {
+                    renderMinicartDrawerItems();
+                } else {
+                    renderDedicatedCartPageLayout();
+                }
+            }
+        }
+
+        /* CHECKOUT SUMMARY RENDERING ENGINE AND ORDER GENERATION WORKFLOWS */
+        function renderSecureCheckoutSummaryLayout() {
+            const target = document.getElementById("checkout-sidebar-summary-target");
+            if(IN_MEMORY_CART.length === 0) {
+                target.innerHTML = `<p style="color:var(--text-muted);">No active products staged for checkout routing.</p>`;
+                return;
+            }
+
+            const subtotal = IN_MEMORY_CART.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
+
+            let itemsHtml = IN_MEMORY_CART.map(item => `
+                <div class="checkout-summary-item">
+                    <img src="${item.img}" alt="${item.title}">
+                    <div class="checkout-summary-meta">
+                        <div class="checkout-summary-title">${item.title}</div>
+                        <div class="checkout-summary-variant">Variant: ${item.variantTitle} × ${item.quantity}</div>
+                    </div>
+                    <div class="checkout-summary-price">$${(item.price * item.quantity).toFixed(2)}</div>
+                </div>
+            `).join('');
+
+            target.innerHTML = `
+                <div class="checkout-block-title">Manifest Summary Allocation</div>
+                ${itemsHtml}
+                <div style="margin-top:25px; border-top:1px solid rgba(0,0,0,0.1); padding-top:15px;">
+                    <div class="summary-row" style="font-size:14px; margin-bottom:8px;">
+                        <span>Staged Items Gross Cost</span>
+                        <span>$${subtotal.toFixed(2)}</span>
+                    </div>
+                    <div class="summary-row" style="font-weight:bold; font-size:16px; margin-top:12px; border-top:1px dashed #ccc; padding-top:10px;">
+                        <span>Invoiced Secure Total</span>
+                        <span>$${subtotal.toFixed(2)}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function executeOrderPlacement(submissionEvent) {
+            submissionEvent.preventDefault();
+            
+            if(IN_MEMORY_CART.length === 0) {
+                alert("Your shopping cart manifest is currently empty.");
+                return;
+            }
+
+            // Capture subtotal calculations matrix before dumping memory state values pointers
+            const finalSubtotal = IN_MEMORY_CART.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
+            const dynamicallyGeneratedOrderId = `AL-${Math.floor(10000 + Math.random() * 90000)}`;
+
+            // Create tracking array additions record mapped directly into account page views logs history
+            const today = new Date();
+            const localizedOptionsDateStr = today.toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' });
+
+            CUSTOMER_ORDERS.unshift({
+                id: dynamicallyGeneratedOrderId,
+                date: localizedOptionsDateStr,
+                fulfillment: "Processing Payment & Dispatch",
+                total: finalSubtotal
+            });
+
+            // Re-render user logs data tracking board tables entries row updates
+            renderAccountOrderLedger();
+
+            // Clear operational shopping arrays allocations and reset top metrics elements badges counts
+            IN_MEMORY_CART = [];
+            recalculateGlobalCartMetrics();
+
+            // Project successful transmission receipt message framework interface layout components swaps onto main target views space
+            const cartSectionWrapperTarget = document.getElementById("cart-page-content-target");
+            const checkoutPageGridWrapperTarget = document.querySelector(".checkout-grid");
+            
+            checkoutPageGridWrapperTarget.innerHTML = `
+                <div class="success-box" style="grid-column: 1 / -1; width:100%;">
+                    <div class="success-icon">✓</div>
+                    <h3 style="text-transform:uppercase; font-size:22px; margin-bottom:15px; letter-spacing:1px;">Maison Remittance Authorized Successfully</h3>
+                    <p style="color:var(--text-muted); margin-bottom:25px; font-size:15px;">Thank you for your choice. Secure order transaction statement reference number <strong>${dynamicallyGeneratedOrderId}</strong> has been allocated to our packing floor. A comprehensive electronic tracing manifesto summary trace path has been relayed straight to your profile address records.</p>
+                    <div style="display:flex; gap:15px; justify-content:center;">
+                        <button onclick="navigateTo('account')" class="shopify-btn">Review My Orders Ledger</button>
+                        <button onclick="navigateTo('home')" class="shopify-btn-secondary">Return to Elite Boutique</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        /* CUSTOMER DASHBOARD ACCOUNT TABS NAVIGATION LOGICS ENGINE */
+        function switchAccountTab(tabPaneTargetId, buttonContextRef) {
+            // Drop historical panel focus anchors highlights metrics states active classes structures
+            document.querySelectorAll(".account-nav-item-btn").forEach(b => b.classList.remove("active-tab-btn"));
+            document.querySelectorAll(".account-pane-content").forEach(p => p.classList.remove("active-pane"));
+
+            // Bind incoming interactive selection structures onto focusing parameters properties
+            buttonContextRef.classList.add("active-tab-btn");
+            document.getElementById(`pane-${tabPaneTargetId}`).classList.add("active-pane");
+        }
+
+        function renderAccountOrderLedger() {
+            const target = document.getElementById("account-orders-table-rows");
+            if(CUSTOMER_ORDERS.length === 0) {
+                target.innerHTML = `<tr><td colspan="4" style="text-align:center; padding:30px; color:var(--text-muted);">No transactional logs mapped onto this account.</td></tr>`;
+                return;
+            }
+
+            target.innerHTML = CUSTOMER_ORDERS.map(order => `
+                <tr>
+                    <td style="font-weight:bold; color:var(--text-charcoal);">${order.id}</td>
+                    <td>${order.date}</td>
+                    <td><span class="status-badge-pill status-unfulfilled">${order.fulfillment}</span></td>
+                    <td style="font-weight:bold;">$${order.total.toFixed(2)}</td>
+                </tr>
+            `).join('');
+        }
+    </script>
+</body>
+</html>

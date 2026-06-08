@@ -1507,7 +1507,30 @@
                 display: none;
             }
         }
+@media (max-width:768px){
 
+    #mainNavMenu{
+        display:none;
+    }
+
+    #mainNavMenu.mobile-open{
+        display:flex !important;
+        flex-direction:column;
+        position:absolute;
+        top:80px;
+        left:0;
+        width:100%;
+        background:#fff;
+        z-index:9999;
+        padding:20px;
+        gap:15px;
+        border-top:1px solid #ddd;
+        box-shadow:0 5px 15px rgba(0,0,0,.08);
+    }
+
+}
+
+        
         @media (max-width: 550px) {
             .product-grid, .category-grid, .footer-columns-grid {
                 grid-template-columns: 1fr;

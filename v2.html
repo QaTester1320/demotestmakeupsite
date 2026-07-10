@@ -1870,37 +1870,38 @@
             }
         }
 
-        /* ==========================================================================
-   PREMIUM FLAGSHIP ADVANCED FUNCTIONALITY EXTENSIONS - FIXES ADDITION
+/* ==========================================================================
+   PREMIUM FLAGSHIP FUNCTIONAL EXTENSIONS - FULL REVISION
    ========================================================================== */
 :root {
-    --luxury-card-bg: #ffffff;
-    --luxury-text-dark: #1c1c1c;
-    --luxury-text-muted: #777777;
-    --luxury-gold-accent: #d4af37;
+    --luxury-gold: #d4af37;
+    --matte-charcoal: #1c1c1c;
+    --border-muted: #e5e5e5;
+    --bg-light-matte: #f9f9f9;
 }
 
-/* Fix 1 & 2: Smooth Cinematic Morph Section (No scroll hijacking) */
+/* Scroll Section: Cinematic Auto-Morph Layout */
 .premium-morph-showcase {
-    background: var(--bg-off-white);
-    padding: 100px 5%;
-    border-bottom: 1px solid var(--border-light);
+    background: var(--bg-light-matte);
+    padding: 90px 5%;
+    border-bottom: 1px solid var(--border-muted);
+    font-family: 'Segoe UI', system-ui, sans-serif;
 }
 .morph-inner-wrapper {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.2fr 1fr;
-    gap: 60px;
+    gap: 50px;
     align-items: center;
 }
 .morph-visual-viewport {
     position: relative;
-    height: 550px;
-    background: #f0f0f0;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+    height: 500px;
+    background: #eaeaea;
+    border-radius: 2px;
     overflow: hidden;
-    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
 }
 .morph-viewport-img {
     position: absolute;
@@ -1910,8 +1911,8 @@
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    transform: scale(1.04);
-    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: scale(1.02);
+    transition: opacity 0.6s ease, transform 0.6s ease;
     z-index: 1;
 }
 .morph-viewport-img.is-active {
@@ -1922,30 +1923,28 @@
 .morph-editorial-panel {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
 }
 .morph-timeline-steps {
     display: flex;
-    gap: 15px;
-    border-bottom: 1px solid var(--border-light);
+    gap: 20px;
+    border-bottom: 1px solid var(--border-muted);
     padding-bottom: 15px;
 }
 .morph-step-trigger {
     background: none;
     border: none;
-    font-family: var(--font-main);
-    font-size: 0.85rem;
-    font-weight: bold;
+    font-size: 0.8rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: var(--text-muted);
+    color: #999999;
     cursor: pointer;
     padding: 5px 0;
     position: relative;
-    transition: var(--transition-smooth);
 }
 .morph-step-trigger.is-active {
-    color: var(--text-charcoal);
+    color: var(--matte-charcoal);
 }
 .morph-step-trigger.is-active::after {
     content: '';
@@ -1954,223 +1953,165 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background: var(--text-charcoal);
+    background: var(--matte-charcoal);
 }
 .morph-story-card {
     display: none;
 }
 .morph-story-card.is-active {
     display: block;
-    animation: luxuryFadeIn 0.5s ease forward;
 }
 
-/* Fix 3: Enhanced Editorial Lookbook with Hover Cards */
+/* Lookbook Section: Interactive Multi-Hotspot + Side Quickview Panel */
 .flagship-lookbook-grid {
-    background: var(--bg-pure-white);
-    padding: 100px 5%;
-}
-.lookbook-editorial-title {
-    text-align: center;
-    font-family: var(--font-main);
-    font-weight: 300;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--text-charcoal);
-    margin-bottom: 60px;
+    background: #ffffff;
+    padding: 90px 5%;
+    font-family: 'Segoe UI', system-ui, sans-serif;
 }
 .lookbook-layout-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.3fr 1fr;
     gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
 }
 .lookbook-interactive-container {
     position: relative;
-    border-radius: 4px;
+    border-radius: 2px;
     overflow: hidden;
 }
-.lookbook-interactive-container img.main-model-photo {
+.lookbook-interactive-container .main-model-photo {
     width: 100%;
-    height: 750px;
+    height: 650px;
     object-fit: cover;
     display: block;
 }
 .luxury-pulse-hotspot {
     position: absolute;
-    width: 32px;
-    height: 32px;
-    background: rgba(255, 255, 255, 0.85);
-    border: 1px solid var(--border-dark);
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--matte-charcoal);
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-charcoal);
-    font-size: 16px;
+    color: var(--matte-charcoal);
+    font-size: 18px;
     font-weight: bold;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
     z-index: 10;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
-.luxury-pulse-hotspot::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    animation: luxuryPulse 2s infinite;
+.luxury-pulse-hotspot:hover, .luxury-pulse-hotspot.is-active {
+    background: var(--matte-charcoal);
+    color: #ffffff;
+    transform: scale(1.1);
 }
-@keyframes luxuryPulse {
-    0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(2.2); opacity: 0; }
-}
-.luxury-hotspot-popover-card {
-    position: absolute;
-    bottom: 45px;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background: var(--luxury-card-bg);
-    border: 1px solid var(--border-light);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-    padding: 15px;
-    width: 260px;
-    border-radius: 4px;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-    z-index: 20;
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
-.luxury-pulse-hotspot:hover .luxury-hotspot-popover-card {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-}
-.popover-product-thumb {
-    width: 70px;
-    height: 70px;
-    object-fit: cover;
-    border-radius: 2px;
-    border: 1px solid var(--border-light);
-}
-.popover-details-wrap {
-    flex: 1;
+.lookbook-quickview-sidepanel {
+    background: var(--bg-light-matte);
+    border: 1px solid var(--border-muted);
+    padding: 40px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 2px;
+    min-height: 500px;
 }
-.popover-brand-tag {
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--luxury-gold-accent);
-    font-weight: bold;
+.quickview-product-image {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    margin-bottom: 25px;
+    border: 1px solid var(--border-muted);
+    background: #ffffff;
+    transition: transform 0.3s ease;
 }
-.popover-title-text {
-    font-size: 0.85rem;
-    font-weight: bold;
-    color: var(--luxury-text-dark);
-    margin: 0;
-}
-.popover-price-tag {
+.quickview-pdp-link {
+    display: inline-block;
+    background: var(--matte-charcoal);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 14px 35px;
     font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     font-weight: bold;
-    color: var(--luxury-text-dark);
+    margin-top: 20px;
+    transition: opacity 0.2s ease;
+}
+.quickview-pdp-link:hover {
+    opacity: 0.9;
 }
 
-/* Immersive Embedded Video Matrix Section & Shade Finder Row */
+/* Video Sync Timeline Section */
 .immersive-experience-row {
-    background: var(--bg-pure-white);
-    padding: 100px 5%;
-    border-top: 1px solid var(--border-light);
-}
-.experience-section-header {
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto 60px auto;
-}
-.experience-section-header h2 {
-    font-family: var(--font-main);
-    font-weight: 300;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 15px;
+    background: #ffffff;
+    padding: 90px 5%;
+    border-top: 1px solid var(--border-muted);
+    font-family: 'Segoe UI', system-ui, sans-serif;
 }
 .video-matrix-container {
     display: grid;
     grid-template-columns: 1.4fr 1fr;
     gap: 40px;
     max-width: 1200px;
-    margin: 0 auto 100px auto;
-    background: var(--bg-off-white);
-    border: 1px solid var(--border-light);
-    border-radius: 4px;
+    margin: 0 auto 90px auto;
+    background: var(--bg-light-matte);
+    border: 1px solid var(--border-muted);
+    border-radius: 2px;
     overflow: hidden;
 }
 .video-player-frame {
+    background: #000000;
     position: relative;
-    background: #000;
 }
 .video-player-frame video {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    min-height: 400px;
     display: block;
+    object-fit: cover;
 }
 .matrix-interactive-sidebar {
     padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-left: 1px solid var(--border-light);
 }
 .matrix-live-card {
     display: none;
 }
 .matrix-live-card.is-active {
     display: block;
-    animation: luxuryFadeIn 0.4s ease forward;
 }
 
-/* Virtual Shade Finder Split Row */
+/* Shade Canvas Split Section */
 .shade-finder-split-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     max-width: 1200px;
     margin: 0 auto;
-    border: 1px solid var(--border-light);
-    border-radius: 4px;
+    border: 1px solid var(--border-muted);
+    border-radius: 2px;
     overflow: hidden;
 }
 .shade-canvas-frame {
-    position: relative;
-    height: 600px;
+    height: 550px;
     background: #eaeaea;
 }
 .shade-canvas-frame img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-.shade-color-tint-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    mix-blend-mode: multiply;
-    opacity: 0.2;
-    transition: background-color 0.4s ease;
-    pointer-events: none;
+    transition: opacity 0.4s ease;
 }
 .shade-controls-frame {
-    background: var(--bg-off-white);
-    padding: 60px;
+    background: var(--bg-light-matte);
+    padding: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -2179,11 +2120,11 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
-    margin-top: 30px;
+    margin-top: 25px;
 }
 .luxury-shade-circle {
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     border: 2px solid transparent;
     cursor: pointer;
@@ -2191,30 +2132,24 @@
     transition: transform 0.2s ease, border-color 0.2s ease;
 }
 .luxury-shade-circle:hover, .luxury-shade-circle.is-active {
-    transform: scale(1.1);
-    border-color: var(--border-dark);
+    transform: scale(1.08);
+    border-color: var(--matte-charcoal);
 }
 
-@keyframes luxuryFadeIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Global Sticky Bar Component */
+/* Bottom Sticky Checkout Bar */
 .flagship-pdp-sticky-bar {
     position: fixed;
     bottom: -120px;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid var(--border-light);
-    padding: 15px 10%;
+    background: rgba(255, 255, 255, 0.98);
+    border-top: 1px solid var(--border-muted);
+    padding: 15px 8%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 9999;
-    box-shadow: 0 -10px 30px rgba(0,0,0,0.04);
+    box-shadow: 0 -8px 25px rgba(0,0,0,0.04);
     transition: bottom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .flagship-pdp-sticky-bar.is-visible {
@@ -2226,11 +2161,10 @@
     gap: 15px;
 }
 .sticky-bar-thumb-img {
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
     object-fit: cover;
-    border: 1px solid var(--border-light);
-    border-radius: 2px;
+    border: 1px solid var(--border-muted);
 }
     </style>
 </head>
@@ -2790,6 +2724,198 @@
     </div>
 </section>
 
+<!-- ==========================================================================
+     ADDED INTERACTIVE MODULES (fully functional with multiple products & explicit states)
+     ========================================================================== -->
+
+<!-- 1. SCROLL REPLACEMENT: CINEMATIC AUTO-MORPH ROTATION ENGINE -->
+<section class="premium-morph-showcase" id="home-luxury-morph-carousel">
+    <div class="morph-inner-wrapper">
+        <div class="morph-visual-viewport">
+            <img src="https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=800&q=80" class="morph-viewport-img is-active" id="img-scroll-step1" alt="Formulation Step 1">
+            <img src="https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&w=800&q=80" class="morph-viewport-img" id="img-scroll-step2" alt="Formulation Step 2">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80" class="morph-viewport-img" id="img-scroll-step3" alt="Formulation Step 3">
+        </div>
+        <div class="morph-editorial-panel">
+            <div class="morph-timeline-steps">
+                <button class="morph-step-trigger is-active" data-target="scroll-step1" data-automation="scroll-tab-1">01 / Extraction</button>
+                <button class="morph-step-trigger" data-target="scroll-step2" data-automation="scroll-tab-2">02 / Refinement</button>
+                <button class="morph-step-trigger" data-target="scroll-step3" data-automation="scroll-tab-3">03 / Bottling</button>
+            </div>
+            <div class="morph-stories-bucket">
+                <div class="morph-story-card is-active" id="text-scroll-step1">
+                    <span style="color:var(--luxury-gold); text-transform:uppercase; font-size:0.75rem; letter-spacing:2px; font-weight:bold;">Pure Sourcing</span>
+                    <h3 style="font-size:2rem; font-weight:300; margin:10px 0; color:var(--matte-charcoal);">Raw Alpine Botanical Sourcing</h3>
+                    <p style="color:#666666; line-height:1.6; font-size:0.9rem;">Ingredients harvested by hand at sunrise to lock in raw molecular actives before production begins.</p>
+                </div>
+                <div class="morph-story-card" id="text-scroll-step2">
+                    <span style="color:var(--luxury-gold); text-transform:uppercase; font-size:0.75rem; letter-spacing:2px; font-weight:bold;">Lab Precision</span>
+                    <h3 style="font-size:2rem; font-weight:300; margin:10px 0; color:var(--matte-charcoal);">Cold Distillation Filtering</h3>
+                    <p style="color:#666666; line-height:1.6; font-size:0.9rem;">Using negative pressure extraction technology to isolate active compounds without any degradation elements.</p>
+                </div>
+                <div class="morph-story-card" id="text-scroll-step3">
+                    <span style="color:var(--luxury-gold); text-transform:uppercase; font-size:0.75rem; letter-spacing:2px; font-weight:bold;">Elite Finish</span>
+                    <h3 style="font-size:2rem; font-weight:300; margin:10px 0; color:var(--matte-charcoal);">Crystalline Preservation Units</h3>
+                    <p style="color:#666666; line-height:1.6; font-size:0.9rem;">Poured directly into light-blocking ultraviolet glass containers to maximize long-term stability matrices.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. EDITORIAL LOOKBOOK: HOVER HOTSPOTS DYNAMICALLY UPDATING RIGHT SIDE QUICKVIEW PANEL -->
+<section class="flagship-lookbook-grid" id="home-interactive-lookbook">
+    <h3 style="text-align:center; text-transform:uppercase; letter-spacing:3px; font-weight:300; margin-bottom:50px;">Maison Lookbook — Interactive Canvas</h3>
+    <div class="lookbook-layout-wrapper">
+        
+        <!-- Left Side Portrait with Hotspot Dot Targets -->
+        <div class="lookbook-interactive-container">
+            <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=800&q=80" class="main-model-photo" alt="Editorial Visual Canvas">
+            
+            <!-- Hotspot 1: Lips -->
+            <div class="luxury-pulse-hotspot is-active" style="top: 42%; left: 51%;" 
+                 data-prod-img="https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=400&q=80"
+                 data-prod-title="Matte Velvet Lip Stain"
+                 data-prod-brand="Lip Atelier"
+                 data-prod-price="$42.00"
+                 data-pdp-href="#pdp-lip-stain"
+                 data-automation="hotspot-lips">1</div>
+
+            <!-- Hotspot 2: Eyes -->
+            <div class="luxury-pulse-hotspot" style="top: 25%; left: 45%;" 
+                 data-prod-img="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=400&q=80"
+                 data-prod-title="Hyper-Precision Liquid Liner"
+                 data-prod-brand="Maison Eye"
+                 data-prod-price="$36.00"
+                 data-pdp-href="#pdp-liquid-liner"
+                 data-automation="hotspot-eyes">2</div>
+
+            <!-- Hotspot 3: Cheeks -->
+            <div class="luxury-pulse-hotspot" style="top: 34%; left: 62%;" 
+                 data-prod-img="https://images.unsplash.com/photo-1631730359577-38e47be02182?auto=format&fit=crop&w=400&q=80"
+                 data-prod-title="Satin Luminous Powder Blush"
+                 data-prod-brand="Glow Matrix"
+                 data-prod-price="$48.00"
+                 data-pdp-href="#pdp-powder-blush"
+                 data-automation="hotspot-cheeks">3</div>
+        </div>
+
+        <!-- Right Side Panel: Dynamically Updated Quickview Presentation -->
+        <div class="lookbook-quickview-sidepanel" id="lookbook-quickview-display" data-automation="quickview-panel">
+            <span id="qv-brand" style="text-transform:uppercase; color:var(--luxury-gold); font-size:0.75rem; letter-spacing:2px; font-weight:bold; display:block; margin-bottom:5px;">Lip Atelier</span>
+            <h4 id="qv-title" style="font-size:1.4rem; font-weight:400; margin:0 0 15px 0; color:var(--matte-charcoal);">Matte Velvet Lip Stain</h4>
+            <img id="qv-image" src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=400&q=80" class="quickview-product-image" alt="Active Product Object">
+            <span id="qv-price" style="font-size:1.2rem; font-weight:bold; color:var(--matte-charcoal); display:block;">$42.00</span>
+            <a id="qv-pdp-anchor" href="#pdp-lip-stain" class="quickview-pdp-link" data-automation="quickview-pdp-button">View Product Detail Page</a>
+        </div>
+
+    </div>
+</section>
+
+<!-- 3. MAKEUP VIDEO SECTION: STABLE NATIVE STREAMING CONTAINER WITH LIVE DATA STATE LINKS -->
+<section class="immersive-experience-row" id="home-interactive-experiences">
+    <div style="text-align:center; margin-bottom:50px;">
+        <h2 style="text-transform:uppercase; letter-spacing:3px; font-weight:300;">Cinematic Tutorial Sync</h2>
+        <p style="color:#777777; font-size:0.9rem;">Watch the timeline run; product cards on the right swap perfectly in live time based on the video frames.</p>
+    </div>
+
+    <div class="video-matrix-container">
+        <!-- Native video node using high-stability streaming file framework -->
+        <div class="video-player-frame">
+            <video id="luxury-playback-canvas" controls autoplay muted loop playsinline data-automation="flagship-video-node">
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                Your browser execution sandbox does not support direct HTML5 video element integration tags.
+            </video>
+        </div>
+        
+        <!-- Live Sync Target Panel Cards -->
+        <div class="matrix-interactive-sidebar" id="matrix-automated-product-sidebar">
+            <div class="matrix-live-card is-active" data-time-start="0" data-time-end="4" data-automation="video-card-prep">
+                <span style="text-transform:uppercase; letter-spacing:1.5px; font-size:0.7rem; color:var(--luxury-gold); font-weight:bold;">Currently Showing / 0-4s</span>
+                <h3 style="font-weight:400; color:var(--matte-charcoal); margin:5px 0 10px 0;">Hydrating Prime Serum Base</h3>
+                <p style="color:#777777; font-size:0.85rem; line-height:1.5; margin-bottom:15px;">Establishes initial skin surface conditioning fields prior to pigment layering runs.</p>
+                <span style="font-weight:bold; font-size:1rem; display:block;">$68.00</span>
+            </div>
+            <div class="matrix-live-card" data-time-start="4" data-time-end="9" data-automation="video-card-layer">
+                <span style="text-transform:uppercase; letter-spacing:1.5px; font-size:0.7rem; color:var(--luxury-gold); font-weight:bold;">Currently Showing / 4-9s</span>
+                <h3 style="font-weight:400; color:var(--matte-charcoal); margin:5px 0 10px 0;">Velvet Soft-Focus Liquid Foundation</h3>
+                <p style="color:#777777; font-size:0.85rem; line-height:1.5; margin-bottom:15px;">Deep pore filling structural suspension formulas that pass intensive automation validation passes easily.</p>
+                <span style="font-weight:bold; font-size:1rem; display:block;">$56.00</span>
+            </div>
+            <div class="matrix-live-card" data-time-start="9" data-time-end="999" data-automation="video-card-seal">
+                <span style="text-transform:uppercase; letter-spacing:1.5px; font-size:0.7rem; color:var(--luxury-gold); font-weight:bold;">Currently Showing / 9s+</span>
+                <h3 style="font-weight:400; color:var(--matte-charcoal); margin:5px 0 10px 0;">Satin Matte Setting Translucent Powder</h3>
+                <p style="color:#777777; font-size:0.85rem; line-height:1.5; margin-bottom:15px;">Locks structural tone layouts down for long-term endurance thresholds against environmental friction scenarios.</p>
+                <span style="font-weight:bold; font-size:1rem; display:block;">$44.00</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. SHADE SELECTION: REFACTORING BOTH IMAGE SOURCE CHANGE AND SKIN-SPECIFIC MAKEUP DETAILS TEXT -->
+    <div class="shade-finder-split-row" id="flagship-shade-finder-anchor">
+        <div class="shade-canvas-frame">
+            <!-- Central Dynamic Target Face Image -->
+            <img id="luxury-model-face-target" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="Active Selection Portrait Canvas Model">
+        </div>
+        <div class="shade-controls-frame">
+            <span style="text-transform:uppercase; letter-spacing:2px; font-size:0.75rem; color:#888888; font-weight:bold;">Shade Canvas Alchemist</span>
+            <h3 id="luxury-shade-title" style="font-size:1.8rem; font-weight:300; margin:5px 0 2px 0;">Alabaster Porcelain Match</h3>
+            <p id="luxury-shade-hex" style="color:var(--luxury-gold); font-weight:bold; font-size:0.9rem; margin-bottom:15px;">#E6B89C</p>
+            
+            <!-- Real Functional Details Area for Makeup Routine Properties Used -->
+            <div style="background:#ffffff; border:1px solid var(--border-muted); padding:15px; margin-bottom:25px; border-radius:2px;">
+                <span style="font-size:0.7rem; text-transform:uppercase; font-weight:bold; color:#aaaaaa; display:block; letter-spacing:1px;">Recommended Skin Makeup Formula Routine:</span>
+                <p id="luxury-makeup-routine-text" style="font-size:0.85rem; color:var(--matte-charcoal); margin:5px 0 0 0; line-height:1.5;">Utilizes Crystalline Base Oil Priming Systems combined with Micro-Milled Matte Finishing Complex Line 01.</p>
+            </div>
+
+            <!-- Clickable Swatches providing explicit image swaps & text injections -->
+            <div class="shade-swatches-grid">
+                <div class="luxury-shade-circle is-active" style="background:#e6b89c;" 
+                     data-variant="Alabaster Porcelain Match" 
+                     data-hex="#E6B89C"
+                     data-img="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+                     data-routine="Utilizes Crystalline Base Oil Priming Systems combined with Micro-Milled Matte Finishing Complex Line 01."
+                     data-automation="swatch-alabaster"></div>
+                     
+                <div class="luxury-shade-circle" style="background:#d4a373;" 
+                     data-variant="Sunkissed Neutral Ochre" 
+                     data-hex="#D4A373"
+                     data-img="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80"
+                     data-routine="Matches perfectly with Satin Honey Liquid Fluid Foundations and Amber Glow Cheek Highlighting Drops."
+                     data-automation="swatch-ochre"></div>
+                     
+                <div class="luxury-shade-circle" style="background:#b5835a;" 
+                     data-variant="Warm Radiant Terracotta" 
+                     data-hex="#B5835A"
+                     data-img="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80"
+                     data-routine="Applies Golden Earth Matte Pigmentation Suspensions layered over Deep Hydro-Lock Lock-In Base Spray Fluid."
+                     data-automation="swatch-terracotta"></div>
+                     
+                <div class="luxury-shade-circle" style="background:#8a5a36;" 
+                     data-variant="Deep Espresso Umber" 
+                     data-hex="#8A5A36"
+                     data-img="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=800&q=80"
+                     data-routine="Configured specifically for Luxury Velvet Cocoa Fluid Base applications and Deep Bronze Diamond Powder Sets."
+                     data-automation="swatch-umber"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FLOATING TOPPERS ACTION ELEMENT STICKY FOOTER BOARD -->
+<div class="flagship-pdp-sticky-bar" id="luxury-global-pdp-sticky-node" data-automation="pdp-sticky-action-bar-container">
+    <div class="sticky-bar-meta">
+        <img src="https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&w=120&q=80" class="sticky-bar-thumb-img" alt="Product Miniature">
+        <div>
+            <h4 style="font-size:0.9rem; margin:0; font-weight:700; color:var(--matte-charcoal);">AURA Essence Flagship Master Unit</h4>
+            <p style="color:#777777; margin:0; font-size:0.75rem;">Premium Complex / Structural Execution Set</p>
+        </div>
+    </div>
+    <div>
+        <button class="buy-btn" id="sticky-bar-instant-checkout-btn" data-automation="sticky-checkout-submit-trigger" style="padding:12px 28px; font-size:0.75rem; margin-top:0;">Instant Checkout Bag</button>
+    </div>
+</div>
+    
 <div class="flagship-pdp-sticky-bar" id="luxury-global-pdp-sticky-node" data-automation="pdp-sticky-action-bar-container">
     <div class="sticky-bar-meta">
         <img src="https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&w=120&q=80" class="sticky-bar-thumb-img" alt="Product Thumbnail Base Object">
@@ -4090,6 +4216,165 @@ document.addEventListener("DOMContentLoaded", function () {
             stickyBottomActionBar.classList.add("is-visible");
         } else {
             stickyBottomActionBar.classList.remove("is-visible");
+        }
+    });
+});
+        // ==========================================================================
+// PURELY ADDITIVE JAVASCRIPT: ROBUST SYSTEM AUTOMATION TESTING BACKEND DRIVER
+// ==========================================================================
+document.addEventListener("DOMContentLoaded", function () {
+    
+    /* 1. SCROLL REPLACEMENT: CROSS-FADE TABS CLICK HANDLERS */
+    const morphButtons = document.querySelectorAll(".morph-step-trigger");
+    const morphImages = document.querySelectorAll(".morph-viewport-img");
+    const morphTexts = document.querySelectorAll(".morph-story-card");
+    
+    if (morphButtons.length > 0) {
+        morphButtons.forEach((btn, idx) => {
+            btn.addEventListener("click", function () {
+                // Clear all active tracking classes
+                morphButtons.forEach(b => b.classList.remove("is-active"));
+                morphImages.forEach(i => i.classList.remove("is-active"));
+                morphTexts.forEach(t => t.classList.remove("is-active"));
+                
+                // Active single selection map nodes
+                this.classList.add("is-active");
+                const assignedTarget = this.getAttribute("data-target");
+                
+                if (assignedTarget === "scroll-step1") {
+                    document.getElementById("img-scroll-step1").classList.add("is-active");
+                    document.getElementById("text-scroll-step1").classList.add("is-active");
+                } else if (assignedTarget === "scroll-step2") {
+                    document.getElementById("img-scroll-step2").classList.add("is-active");
+                    document.getElementById("text-scroll-step2").classList.add("is-active");
+                } else if (assignedTarget === "scroll-step3") {
+                    document.getElementById("img-scroll-step3").classList.add("is-active");
+                    document.getElementById("text-scroll-step3").classList.add("is-active");
+                }
+            });
+        });
+    }
+
+    /* 2. LOOKBOOK: DYNAMIC QUICKVIEW SIDE PANEL SWAP ENGINE (CLICK & HOVER STABLE) */
+    const hotSpotDots = document.querySelectorAll(".luxury-pulse-hotspot");
+    const qvDisplayNode = document.getElementById("lookbook-quickview-display");
+    const qvBrandText = document.getElementById("qv-brand");
+    const qvTitleText = document.getElementById("qv-title");
+    const qvImageNode = document.getElementById("qv-image");
+    const qvPriceText = document.getElementById("qv-price");
+    const qvPdpAnchor = document.getElementById("qv-pdp-anchor");
+
+    if (hotSpotDots.length > 0 && qvDisplayNode) {
+        function updateQuickviewState(element) {
+            hotSpotDots.forEach(d => d.classList.remove("is-active"));
+            element.classList.add("is-active");
+
+            // Extract exact element data states
+            const activeImg = element.getAttribute("data-prod-img");
+            const activeTitle = element.getAttribute("data-prod-title");
+            const activeBrand = element.getAttribute("data-prod-brand");
+            const activePrice = element.getAttribute("data-prod-price");
+            const activeHref = element.getAttribute("data-pdp-href");
+
+            // Inject updates to make them testable
+            if (qvBrandText) qvBrandText.textContent = activeBrand;
+            if (qvTitleText) qvTitleText.textContent = activeTitle;
+            if (qvPriceText) qvPriceText.textContent = activePrice;
+            
+            if (qvImageNode) {
+                qvImageNode.style.transform = "scale(0.95)";
+                setTimeout(() => {
+                    qvImageNode.src = activeImg;
+                    qvImageNode.style.transform = "scale(1)";
+                }, 150);
+            }
+            
+            if (qvPdpAnchor) {
+                qvPdpAnchor.setAttribute("href", activeHref);
+            }
+        }
+
+        hotSpotDots.forEach(spot => {
+            // Triggers instantly on hover
+            spot.addEventListener("mouseenter", function () {
+                updateQuickviewState(this);
+            });
+            // Stable backup click fallback wrapper
+            spot.addEventListener("click", function () {
+                updateQuickviewState(this);
+            });
+        });
+    }
+
+    /* 3. TIMELINE VIDEO: HIGH BOUNDARY TRACKING CLIPS LISTENER */
+    const mediaStreamNode = document.getElementById("luxury-playback-canvas");
+    const timingMatrixCards = document.querySelectorAll(".matrix-live-card");
+    
+    if (mediaStreamNode) {
+        // Enforce autoplay conditions via script thread explicitly to bypass browser security blocks
+        mediaStreamNode.muted = true;
+        mediaStreamNode.play().catch(function() {
+            console.log("Browser runtime sandboxing delayed instant audio/video autoplay rules.");
+        });
+
+        mediaStreamNode.addEventListener("timeupdate", function () {
+            const runtimePlaybackPosition = mediaStreamNode.currentTime;
+            
+            timingMatrixCards.forEach(card => {
+                const stepLowerLimit = parseFloat(card.getAttribute("data-time-start"));
+                const stepUpperLimit = parseFloat(card.getAttribute("data-time-end"));
+                
+                if (runtimePlaybackPosition >= stepLowerLimit && runtimePlaybackPosition < stepUpperLimit) {
+                    card.classList.add("is-active");
+                } else {
+                    card.classList.remove("is-active");
+                }
+            });
+        });
+    }
+
+    /* 4. SHADE SELECTION: PORTRAIT SWAPPING + PRODUCT INJECTION ENGINE */
+    const shadeCircles = document.querySelectorAll(".luxury-shade-circle");
+    const facePortraitTarget = document.getElementById("luxury-model-face-target");
+    const titleTextTarget = document.getElementById("luxury-shade-title");
+    const hexTextTarget = document.getElementById("luxury-shade-hex");
+    const routineTextTarget = document.getElementById("luxury-makeup-routine-text");
+
+    if (shadeCircles.length > 0) {
+        shadeCircles.forEach(circleNode => {
+            circleNode.addEventListener("click", function () {
+                shadeCircles.forEach(c => c.classList.remove("is-active"));
+                this.classList.add("is-active");
+
+                const chosenVariant = this.getAttribute("data-variant");
+                const chosenHex = this.getAttribute("data-hex");
+                const chosenImg = this.getAttribute("data-img");
+                const chosenRoutine = this.getAttribute("data-routine");
+
+                // Apply execution variables directly to DOM elements
+                if (titleTextTarget) titleTextTarget.textContent = chosenVariant;
+                if (hexTextTarget) hexTextTarget.textContent = chosenHex;
+                if (routineTextTarget) routineTextTarget.textContent = chosenRoutine;
+                
+                if (facePortraitTarget) {
+                    facePortraitTarget.style.opacity = "0.3";
+                    setTimeout(() => {
+                        facePortraitTarget.src = chosenImg;
+                        facePortraitTarget.style.opacity = "1";
+                    }, 200);
+                }
+            });
+        });
+    }
+
+    /* 5. FLOATING CONTROLS: SCROLL PERSISTENCE VIEW TRIGGER */
+    const bottomStickyBarContainer = document.getElementById("luxury-global-pdp-sticky-node");
+    window.addEventListener("scroll", function () {
+        if (!bottomStickyBarContainer) return;
+        if (window.scrollY > 600) {
+            bottomStickyBarContainer.classList.add("is-visible");
+        } else {
+            bottomStickyBarContainer.classList.remove("is-visible");
         }
     });
 });

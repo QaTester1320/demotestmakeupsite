@@ -1,0 +1,233 @@
+<!-- UNIQUE CHROMATIC INTERACTIVE MELTING ENGINE -->
+<style>
+    :root {
+        --matte-black: #0f0f0f;
+        --matte-charcoal: #161616;
+        --liquid-crimson: #8b0000;
+        --gold-fluid: #c5a059;
+        --font-segoe: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    .unique-lab-section {
+        width: 100%;
+        min-height: 100vh;
+        background-color: var(--matte-black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 4%;
+        overflow: hidden;
+        position: relative;
+        font-family: var(--font-segoe);
+    }
+
+    .unique-lab-grid {
+        width: 100%;
+        max-width: 1300px;
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 60px;
+        align-items: center;
+        z-index: 5;
+    }
+
+    /* Left Minimalist Architectural Info Panel */
+    .lab-statement-panel {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .lab-series-tag {
+        font-size: 11px;
+        color: var(--gold-fluid);
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        margin-bottom: 25px;
+        font-weight: 600;
+    }
+
+    .lab-main-headline {
+        font-size: 3.5rem;
+        font-weight: 300;
+        line-height: 1.15;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        margin-bottom: 30px;
+    }
+
+    .lab-main-headline em {
+        font-style: normal;
+        color: var(--gold-fluid);
+        font-weight: 400;
+    }
+
+    .lab-description {
+        font-size: 14px;
+        color: #8c8c8c;
+        line-height: 1.8;
+        margin-bottom: 40px;
+        max-width: 480px;
+    }
+
+    /* Interactive Fluid Melting Canvas Box (Right Side) */
+    .lab-interactive-canvas-container {
+        position: relative;
+        width: 100%;
+        height: 600px;
+        background-color: var(--matte-charcoal);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        border-radius: 4px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    /* The liquid melting texture layers inside the frame */
+    .melting-liquid-base {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+        filter: brightness(0.4) grayscale(1);
+        transition: filter 0.8s ease, transform 0.8s ease;
+    }
+
+    /* Hardware accelerated fluid blob elements that warp dynamically */
+    .fluid-melt-blob {
+        position: absolute;
+        width: 450px;
+        height: 450px;
+        background: radial-gradient(circle, var(--liquid-crimson) 0%, rgba(0,0,0,0) 70%);
+        mix-blend-mode: color-dodge;
+        border-radius: 50%;
+        opacity: 0;
+        pointer-events: none;
+        transform: translate(-50%, -50%) scale(0.5);
+        transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        filter: blur(30px);
+        z-index: 2;
+    }
+
+    .fluid-melt-blob-secondary {
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(circle, var(--gold-fluid) 0%, rgba(0,0,0,0) 70%);
+        mix-blend-mode: overlay;
+        border-radius: 50%;
+        opacity: 0;
+        pointer-events: none;
+        transform: translate(-50%, -50%) scale(0.3);
+        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        filter: blur(25px);
+        z-index: 3;
+    }
+
+    /* Micro tech lines overlay for luxury aesthetic symmetry */
+    .canvas-tech-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 20px solid transparent;
+        box-sizing: border-box;
+        pointer-events: none;
+        z-index: 4;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding: 15px;
+    }
+
+    .tech-coordinate {
+        font-family: monospace;
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.2);
+        letter-spacing: 1px;
+    }
+
+    /* HOVER INTERACTION OVERRIDES */
+    .lab-interactive-canvas-container:hover .melting-liquid-base {
+        filter: brightness(0.85) grayscale(0);
+        transform: scale(1.05);
+    }
+
+    .lab-interactive-canvas-container:hover .fluid-melt-blob {
+        opacity: 0.9;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .lab-interactive-canvas-container:hover .fluid-melt-blob-secondary {
+        opacity: 0.75;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+</style>
+
+<section class="unique-lab-section">
+    <div class="unique-lab-grid">
+        
+        <!-- Formulation Architecture Column -->
+        <div class="lab-statement-panel">
+            <span class="lab-series-tag">Formulation Lab System // Phase II</span>
+            <h2 class="lab-main-headline">The Liquefied<br><em>Matte Matrix</em></h2>
+            <p class="lab-description">
+                Break away from static displays. Interact with the fluid chamber on the right. Moving your coordinates across the threshold shifts the core thermal density, dynamically liquefying structural raw cosmetic pigments in real time.
+            </p>
+            <div>
+                <a onclick="loadCategoryPage('all')" class="shopify-btn" style="border: 1px solid rgba(255,255,255,0.15); background: none; color: #fff; padding: 16px 36px; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; cursor: pointer; transition: background 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.background='none'">
+                    View Live Diagnostics
+                </a>
+            </div>
+        </div>
+
+        <!-- High-Intensity Fluid Interaction Canvas -->
+        <div class="lab-interactive-canvas-container" id="meltingLabCanvas">
+            <!-- Micro Technical Frame Info -->
+            <div class="canvas-tech-grid">
+                <span class="tech-coordinate">SYS.REF // 809X</span>
+                <span class="tech-coordinate" id="liveCoordinates">X: 00 // Y: 00</span>
+            </div>
+
+            <!-- Dynamic Liquid Melting Blobs -->
+            <div class="fluid-melt-blob" id="meltBlobPrimary"></div>
+            <div class="fluid-melt-blob-secondary" id="meltBlobSecondary"></div>
+
+            <!-- High Definition Lipstick Macro Texture -->
+            <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=1200&auto=format&fit=crop" 
+                 alt="Macro makeup texture melting simulation background" 
+                 class="melting-liquid-base">
+        </div>
+
+    </div>
+</section>
+
+<!-- Smooth Interaction Coordinate Mapping Script -->
+<script>
+    const labCanvas = document.getElementById('meltingLabCanvas');
+    const primaryBlob = document.getElementById('meltBlobPrimary');
+    const secondaryBlob = document.getElementById('meltBlobSecondary');
+    const coordDisplay = document.getElementById('liveCoordinates');
+
+    labCanvas.addEventListener('mousemove', (e) => {
+        const rect = labCanvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        // Instantly transform the spatial coordinates of the melting liquid blobs
+        primaryBlob.style.left = `${mouseX}px`;
+        primaryBlob.style.top = `${mouseY}px`;
+
+        // Add a slight lag/offset to the golden secondary blob to create a dimensional fluid stretch effect
+        setTimeout(() => {
+            secondaryBlob.style.left = `${mouseX}px`;
+            secondaryBlob.style.top = `${mouseY}px`;
+        }, 60);
+
+        // Update the micro tech overlay panel numbers dynamically
+        coordDisplay.textContent = `X: ${Math.round(mouseX)} // Y: ${Math.round(mouseY)}`;
+    });
+</script>

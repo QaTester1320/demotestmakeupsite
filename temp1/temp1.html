@@ -1,0 +1,259 @@
+<!-- HIGH ANIMATION MOTION EXTENSION SYSTEM -->
+<style>
+    :root {
+        --matte-dark: #121212;
+        --gold-premium: #d4af37;
+        --matte-bg-gray: #1a1a1a;
+    }
+
+    .kinetic-stage-container {
+        width: 100%;
+        min-height: 100vh;
+        background-color: var(--matte-dark);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        perspective: 1500px;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    /* Ambient animated particle backdrop simulating raw cosmetics powder */
+    .kinetic-mesh-backdrop {
+        position: absolute;
+        width: 150%;
+        height: 150%;
+        background-image: radial-gradient(rgba(212, 175, 55, 0.15) 1px, transparent 0);
+        background-size: 40px 40px;
+        transform: translateZ(-200px) rotateX(20deg);
+        animation: meshDrift 45s linear infinite;
+        opacity: 0.5;
+        z-index: 1;
+    }
+
+    .kinetic-card-viewport {
+        position: relative;
+        width: 85%;
+        max-width: 1200px;
+        height: 650px;
+        display: flex;
+        background: #181818;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        z-index: 5;
+        overflow: hidden;
+        box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Left Structural Content Panel */
+    .kinetic-editorial-panel {
+        width: 45%;
+        padding: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 10;
+        background: linear-gradient(90deg, #181818 80%, transparent);
+    }
+
+    .kinetic-meta-num {
+        font-size: 11px;
+        color: var(--gold-premium);
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .kinetic-meta-num::after {
+        content: '';
+        display: inline-block;
+        width: 40px;
+        height: 1px;
+        background-color: var(--gold-premium);
+    }
+
+    .kinetic-glitch-title {
+        font-size: 3rem;
+        font-weight: 300;
+        color: #ffffff;
+        text-transform: uppercase;
+        line-height: 1.1;
+        letter-spacing: -1px;
+        margin-bottom: 30px;
+    }
+
+    .kinetic-glitch-title span {
+        display: block;
+        font-weight: 600;
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+    }
+
+    /* Dynamic Hardware-Accelerated Splitting Media Theater */
+    .kinetic-media-theater {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 55%;
+        height: 100%;
+        overflow: hidden;
+        cursor: crosshair;
+    }
+
+    /* Dual curtain split mechanics triggered by hover */
+    .kinetic-shutter-gate {
+        position: absolute;
+        top: 0;
+        width: 50%;
+        height: 100%;
+        background-color: #222222;
+        z-index: 4;
+        transition: transform 1.2s cubic-bezier(0.85, 0, 0.15, 1);
+    }
+
+    .gate-left {
+        left: 0;
+        transform-origin: left;
+        border-right: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .gate-right {
+        right: 0;
+        transform-origin: right;
+        border-left: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    /* The visual engine asset window */
+    .kinetic-image-canvas {
+        width: 100%;
+        height: 100%;
+        transform: scale(1.3) rotate(5deg);
+        transition: transform 1.6s cubic-bezier(0.25, 1, 0.5, 1);
+        position: relative;
+        z-index: 2;
+    }
+
+    .kinetic-image-canvas img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(0.2) contrast(1.3) brightness(0.7);
+        transition: filter 1s ease;
+    }
+
+    /* Fluid molten core element that morphs and positions with cursor moves */
+    .kinetic-liquid-gold-glow {
+        position: absolute;
+        top: -20%;
+        left: -20%;
+        width: 140%;
+        height: 140%;
+        background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.35) 0%, rgba(18, 18, 18, 0) 60%);
+        mix-blend-mode: screen;
+        z-index: 3;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+        animation: dynamicFluidWarp 12s ease-in-out infinite alternate;
+    }
+
+    /* HOVER & INTERACTION STATE TRIGGERS */
+    .kinetic-media-theater:hover .gate-left {
+        transform: scaleX(0);
+    }
+    
+    .kinetic-media-theater:hover .gate-right {
+        transform: scaleX(0);
+    }
+
+    .kinetic-media-theater:hover .kinetic-image-canvas {
+        transform: scale(1) rotate(0deg);
+    }
+
+    .kinetic-media-theater:hover .kinetic-image-canvas img {
+        filter: saturate(1.1) contrast(1.1) brightness(0.9);
+    }
+
+    .kinetic-media-theater:hover .kinetic-liquid-gold-glow {
+        opacity: 1;
+    }
+
+    /* ANIMATION LOOPS KEYFRAMES */
+    @keyframes meshDrift {
+        0% { transform: translateZ(-200px) rotateX(20deg) translateY(0); }
+        100% { transform: translateZ(-200px) rotateX(20deg) translateY(-40px); }
+    }
+
+    @keyframes dynamicFluidWarp {
+        0% { border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%; transform: rotate(0deg) scale(1); }
+        50% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 60%; transform: scale(1.1); }
+        100% { border-radius: 40% 60% 50% 50% / 60% 40% 60% 40%; transform: rotate(360deg) scale(0.95); }
+    }
+</style>
+
+<div class="kinetic-stage-container">
+    <!-- Background Animated Matrix -->
+    <div class="kinetic-mesh-backdrop"></div>
+
+    <!-- Main Display Frame -->
+    <div class="kinetic-card-viewport">
+        
+        <!-- Text & Narrative Section -->
+        <div class="kinetic-editorial-panel">
+            <div class="kinetic-meta-num">Batch Formulation // 004</div>
+            <h3 class="kinetic-glitch-title">
+                Satin Crimson
+                <span>Molecular Fluid</span>
+            </h3>
+            <p style="color: #888888; font-size: 14px; line-height: 1.8; margin-bottom: 35px; font-weight: 300;">
+                A high-viscosity matte finish execution. Built using micro-milled organic pigments suspended inside a thermoreactive satin matrix that locks in contrast definition instantly.
+            </p>
+            <div>
+                <a href="#" style="display: inline-block; padding: 15px 35px; border: 1px solid #ffffff; color: #ffffff; text-decoration: none; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; transition: all 0.3s;" onmouseover="this.style.background='#fff'; this.style.color='#000'" onmouseout="this.style.background='none'; this.style.color='#fff'">
+                    Analyze Composition
+                </a>
+            </div>
+        </div>
+
+        <!-- Ultra-High Motion Theater Canvas Box -->
+        <div class="kinetic-media-theater" id="interactiveTheater">
+            <!-- Splitting Shutters -->
+            <div class="kinetic-shutter-gate gate-left"></div>
+            <div class="kinetic-shutter-gate gate-right"></div>
+            
+            <!-- Dynamic Fluid Floating Vector Surface Element -->
+            <div class="kinetic-liquid-gold-glow" id="fluidFollower"></div>
+
+            <!-- Immersive Texture Viewport Container -->
+            <div class="kinetic-image-canvas">
+                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1200&auto=format&fit=crop" alt="Premium Matte Lipstick Texture Profile">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Optional interactive mouse tracker micro-script to map fluid glow to actual cursor movement vectors -->
+<script>
+    const theater = document.getElementById('interactiveTheater');
+    const fluid = document.getElementById('fluidFollower');
+
+    theater.addEventListener('mousemove', (e) => {
+        const bounds = theater.getBoundingClientRect();
+        // Calculate percentages relative to the container element boundary
+        const x = ((e.clientX - bounds.left) / bounds.width) * 100;
+        const y = ((e.clientY - bounds.top) / bounds.height) * 100;
+        
+        // Dynamically offset the background radial gradient coordinate position
+        fluid.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(212, 175, 55, 0.45) 0%, rgba(18, 18, 18, 0) 50%)`;
+    });
+
+    theater.addEventListener('mouseleave', () => {
+        // Reset smoothly back toward center orientation on pointer escape
+        fluid.style.background = `radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.35) 0%, rgba(18, 18, 18, 0) 60%)`;
+    });
+</script>

@@ -1869,6 +1869,369 @@
                 text-align: center;
             }
         }
+
+        /* ==========================================================================
+   PREMIUM FLAGSHIP ADVANCED FUNCTIONALITY EXTENSIONS - FIXES ADDITION
+   ========================================================================== */
+:root {
+    --luxury-card-bg: #ffffff;
+    --luxury-text-dark: #1c1c1c;
+    --luxury-text-muted: #777777;
+    --luxury-gold-accent: #d4af37;
+}
+
+/* Fix 1 & 2: Smooth Cinematic Morph Section (No scroll hijacking) */
+.premium-morph-showcase {
+    background: var(--bg-off-white);
+    padding: 100px 5%;
+    border-bottom: 1px solid var(--border-light);
+}
+.morph-inner-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+.morph-visual-viewport {
+    position: relative;
+    height: 550px;
+    background: #f0f0f0;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+    overflow: hidden;
+    border-radius: 4px;
+}
+.morph-viewport-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(1.04);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 1;
+}
+.morph-viewport-img.is-active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 2;
+}
+.morph-editorial-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.morph-timeline-steps {
+    display: flex;
+    gap: 15px;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 15px;
+}
+.morph-step-trigger {
+    background: none;
+    border: none;
+    font-family: var(--font-main);
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 5px 0;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+.morph-step-trigger.is-active {
+    color: var(--text-charcoal);
+}
+.morph-step-trigger.is-active::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--text-charcoal);
+}
+.morph-story-card {
+    display: none;
+}
+.morph-story-card.is-active {
+    display: block;
+    animation: luxuryFadeIn 0.5s ease forward;
+}
+
+/* Fix 3: Enhanced Editorial Lookbook with Hover Cards */
+.flagship-lookbook-grid {
+    background: var(--bg-pure-white);
+    padding: 100px 5%;
+}
+.lookbook-editorial-title {
+    text-align: center;
+    font-family: var(--font-main);
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-charcoal);
+    margin-bottom: 60px;
+}
+.lookbook-layout-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.lookbook-interactive-container {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.lookbook-interactive-container img.main-model-photo {
+    width: 100%;
+    height: 750px;
+    object-fit: cover;
+    display: block;
+}
+.luxury-pulse-hotspot {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--border-dark);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-charcoal);
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    z-index: 10;
+}
+.luxury-pulse-hotspot::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: luxuryPulse 2s infinite;
+}
+@keyframes luxuryPulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(2.2); opacity: 0; }
+}
+.luxury-hotspot-popover-card {
+    position: absolute;
+    bottom: 45px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: var(--luxury-card-bg);
+    border: 1px solid var(--border-light);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    padding: 15px;
+    width: 260px;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    z-index: 20;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+.luxury-pulse-hotspot:hover .luxury-hotspot-popover-card {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+.popover-product-thumb {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 2px;
+    border: 1px solid var(--border-light);
+}
+.popover-details-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.popover-brand-tag {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--luxury-gold-accent);
+    font-weight: bold;
+}
+.popover-title-text {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--luxury-text-dark);
+    margin: 0;
+}
+.popover-price-tag {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--luxury-text-dark);
+}
+
+/* Immersive Embedded Video Matrix Section & Shade Finder Row */
+.immersive-experience-row {
+    background: var(--bg-pure-white);
+    padding: 100px 5%;
+    border-top: 1px solid var(--border-light);
+}
+.experience-section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 60px auto;
+}
+.experience-section-header h2 {
+    font-family: var(--font-main);
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+.video-matrix-container {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto 100px auto;
+    background: var(--bg-off-white);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    overflow: hidden;
+}
+.video-player-frame {
+    position: relative;
+    background: #000;
+}
+.video-player-frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.matrix-interactive-sidebar {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid var(--border-light);
+}
+.matrix-live-card {
+    display: none;
+}
+.matrix-live-card.is-active {
+    display: block;
+    animation: luxuryFadeIn 0.4s ease forward;
+}
+
+/* Virtual Shade Finder Split Row */
+.shade-finder-split-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    overflow: hidden;
+}
+.shade-canvas-frame {
+    position: relative;
+    height: 600px;
+    background: #eaeaea;
+}
+.shade-canvas-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.shade-color-tint-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: multiply;
+    opacity: 0.2;
+    transition: background-color 0.4s ease;
+    pointer-events: none;
+}
+.shade-controls-frame {
+    background: var(--bg-off-white);
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.shade-swatches-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 30px;
+}
+.luxury-shade-circle {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.luxury-shade-circle:hover, .luxury-shade-circle.is-active {
+    transform: scale(1.1);
+    border-color: var(--border-dark);
+}
+
+@keyframes luxuryFadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Global Sticky Bar Component */
+.flagship-pdp-sticky-bar {
+    position: fixed;
+    bottom: -120px;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border-light);
+    padding: 15px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9999;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.04);
+    transition: bottom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.flagship-pdp-sticky-bar.is-visible {
+    bottom: 0;
+}
+.sticky-bar-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.sticky-bar-thumb-img {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    border: 1px solid var(--border-light);
+    border-radius: 2px;
+}
     </style>
 </head>
 <body>
@@ -2304,7 +2667,141 @@
         </div>
     </div>
 </section>
+<section class="premium-morph-showcase" id="home-luxury-morph-carousel">
+    <div class="morph-inner-wrapper">
+        <div class="morph-visual-viewport">
+            <img src="https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=800&q=80" class="morph-viewport-img is-active" id="img-layer-step1" alt="Raw Formulation Step">
+            <img src="https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&w=800&q=80" class="morph-viewport-img" id="img-layer-step2" alt="Refinement Molecular Step">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80" class="morph-viewport-img" id="img-layer-step3" alt="Finished Luxury Solution">
+        </div>
+        <div class="morph-editorial-panel">
+            <div class="morph-timeline-steps">
+                <button class="morph-step-trigger is-active" data-target-step="step1">01 / Harvest Base</button>
+                <button class="morph-step-trigger" data-target-step="step2">02 / Refinement</button>
+                <button class="morph-step-trigger" data-target-step="step3">03 / Synthesis</button>
+            </div>
+            <div class="morph-stories-bucket">
+                <div class="morph-story-card is-active" id="text-story-step1">
+                    <span style="color:var(--luxury-gold-accent); text-transform:uppercase; font-size:0.75rem; letter-spacing:2px; font-weight:bold;">Botanical Sourcing</span>
+                    <h3 style="font-family:var(--font-main); font-size:2.2rem; font-weight:300; margin:10px 0 20px 0; color:var(--text-charcoal);">Raw Active Alpine Botanical Purity</h3>
+                    <p style="color:var(--text-muted); line-height:1.7; font-size:0.95rem;">Our botanical journey starts deep within protected alpine flora zones where ingredients are harvested early in the dawn hours to conserve peak active molecular state structures perfectly.</p>
+                </div>
+                <div class="morph-story-card" id="text-story-step2">
+                    <span style="color:var(--luxury-gold-accent); text-transform:uppercase; font-size:0.75rem; letter-spacing:2px; font-weight:bold;">Molecular Concentration</span>
+                    <h3 style="font-family:var(--font-main); font-size:2.2rem; font-weight:300; margin:10px 0 20px 0; color:var(--text-charcoal);">Clean Lab Infusion Filtration</h3>
+                    <p style="color:var(--text-muted); line-height:1.7; font-size:0.95rem;">Using custom lab distillation procedures to completely isolate elemental enzymes without utilizing external harsh synthetic heat properties. Keeping your canvas balanced, safe, and clean.</p>
+                </div>
+                <div class="morph-story-card" id="text-story-step3">
+                    <span style="color:var(--luxury-gold-accent); text-transform:uppercase; font-size:0.75rem; letter-spacing:2px; font-weight:bold;">The Elite Finish</span>
+                    <h3 style="font-family:var(--font-main); font-size:2.2rem; font-weight:300; margin:10px 0 20px 0; color:var(--text-charcoal);">The Finished Crystalline Elixir</h3>
+                    <p style="color:var(--text-muted); line-height:1.7; font-size:0.95rem;">A silky luxury masterpiece engineered for all structural skin variations. It targets fine layers effortlessly to establish an immediately radiating glass canvas ready for advanced styling.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<section class="flagship-lookbook-grid" id="home-interactive-lookbook">
+    <h3 class="lookbook-editorial-title">Maison Lookbook — Shop The Canvas</h3>
+    <div class="lookbook-layout-wrapper">
+        <div class="lookbook-interactive-container">
+            <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=800&q=80" class="main-model-photo" alt="Lookbook Composition Lip Focal Point">
+            <div class="luxury-pulse-hotspot" style="top: 38%; left: 51%;" id="hotspot-lip-element" data-automation="hotspot-target-lip">
+                +
+                <div class="luxury-hotspot-popover-card">
+                    <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=150&q=80" class="popover-product-thumb" alt="Lip Balm Retail Product">
+                    <div class="popover-details-wrap">
+                        <span class="popover-brand-tag">Lip Atelier</span>
+                        <h4 class="popover-title-text">Matte Velvet Lip Stain</h4>
+                        <span class="popover-price-tag">$42.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lookbook-interactive-container">
+            <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80" class="main-model-photo" alt="Lookbook Composition Glow Focal Point">
+            <div class="luxury-pulse-hotspot" style="top: 28%; left: 46%;" id="hotspot-glow-element" data-automation="hotspot-target-glow">
+                +
+                <div class="luxury-hotspot-popover-card">
+                    <img src="https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&w=150&q=80" class="popover-product-thumb" alt="Satin Glass Foundation Oil">
+                    <div class="popover-details-wrap">
+                        <span class="popover-brand-tag">Glow Matrix</span>
+                        <h4 class="popover-title-text">Satin Pure Highlighter</h4>
+                        <span class="popover-price-tag">$56.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="immersive-experience-row" id="home-interactive-experiences">
+    <div class="experience-section-header">
+        <h2>Cinematic Digital flagship</h2>
+        <p style="color:var(--text-muted); font-size:0.95rem;">Experience dynamic matching updates across interactive video timelines and virtual canvas tint matching configurations.</p>
+    </div>
+
+    <div class="video-matrix-container">
+        <div class="video-player-frame">
+            <video id="luxury-playback-canvas" class="embedded-video-element" controls muted loop data-automation="flagship-video-node">
+                <source src="https://player.vimeo.com/external/435674703.sd.mp4?s=aa9430c5e3175be256d0d7ed92691456d2ee0e81&profile_id=165&oauth2_token_id=57447761" type="video/mp4">
+                Your native environment container doesn't support embedding video playback layers.
+            </video>
+        </div>
+        <div class="matrix-interactive-sidebar" id="matrix-automated-product-sidebar">
+            <div class="matrix-live-card is-active" data-time-start="0" data-time-end="4" data-automation="card-step-hydration">
+                <span style="text-transform:uppercase; letter-spacing:1.5px; font-size:0.7rem; color:var(--luxury-gold-accent); font-weight:bold;">Phase 01 / Canvas Prep</span>
+                <h3 style="font-family:var(--font-main); font-weight:400; color:var(--text-charcoal); margin:8px 0 12px 0;">Pure Hydrating Serum Base</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6; margin-bottom:20px;">Establishes deep structural moisture containment properties for consistent all-day makeup layer adherence.</p>
+                <span style="font-size:1.1rem; font-weight:bold; color:var(--text-charcoal); display:block; margin-bottom:15px;">$68.00</span>
+            </div>
+            <div class="matrix-live-card" data-time-start="4" data-time-end="9" data-automation="card-step-blush">
+                <span style="text-transform:uppercase; letter-spacing:1.5px; font-size:0.7rem; color:var(--luxury-gold-accent); font-weight:bold;">Phase 02 / Definition Accent</span>
+                <h3 style="font-family:var(--font-main); font-weight:400; color:var(--text-charcoal); margin:8px 0 12px 0;">Velvet Soft-Focus Cheek Blush</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6; margin-bottom:20px;">Applies an organic micro-milled cheek pigment density layer to maximize elegant high structural geometry facial definition elements.</p>
+                <span style="font-size:1.1rem; font-weight:bold; color:var(--text-charcoal); display:block; margin-bottom:15px;">$45.00</span>
+            </div>
+            <div class="matrix-live-card" data-time-start="9" data-time-end="999" data-automation="card-step-finish">
+                <span style="text-transform:uppercase; letter-spacing:1.5px; font-size:0.7rem; color:var(--luxury-gold-accent); font-weight:bold;">Phase 03 / Eye Focal Layer</span>
+                <h3 style="font-family:var(--font-main); font-weight:400; color:var(--text-charcoal); margin:8px 0 12px 0;">Maison Eye Enhancing Definer</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6; margin-bottom:20px;">Ultra precision pure black soot definition parameters with robust liquid moisture testing resistance capabilities mapped across high-frequency script tasks.</p>
+                <span style="font-size:1.1rem; font-weight:bold; color:var(--text-charcoal); display:block; margin-bottom:15px;">$38.00</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="shade-finder-split-row" id="flagship-shade-finder-anchor">
+        <div class="shade-canvas-frame">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="Model Portrait Canvas Backdrop Layer">
+            <div class="shade-color-tint-overlay" id="luxury-shade-tint-layer"></div>
+        </div>
+        <div class="shade-controls-frame">
+            <span style="text-transform:uppercase; letter-spacing:2px; font-size:0.75rem; color:var(--text-muted); font-weight:bold;">Alchemist Tool</span>
+            <h3 style="font-family:var(--font-main); font-weight:300; font-size:2rem; margin:10px 0 5px 0;" id="luxury-shade-headline">Select Skin Tone Matching Variant</h3>
+            <p style="color:var(--luxury-gold-accent); font-family:var(--font-main); font-weight:bold; font-size:0.9rem;" id="luxury-shade-hex-code">#E6B89C</p>
+            
+            <div class="shade-swatches-grid">
+                <div class="luxury-shade-circle is-active" style="background:#e6b89c;" data-title-variant="Sartorial Alabaster L1" data-hex-val="#e6b89c" data-automation="shade-node-1"></div>
+                <div class="luxury-shade-circle" style="background:#d4a373;" data-title-variant="Muted Neutral Ochre L2" data-hex-val="#d4a373" data-automation="shade-node-2"></div>
+                <div class="luxury-shade-circle" style="background:#b5835a;" data-title-variant="Warm Umber Sienna L3" data-hex-val="#b5835a" data-automation="shade-node-3"></div>
+                <div class="luxury-shade-circle" style="background:#9c6644;" data-title-variant="Deep Complex Earth L4" data-hex-val="#9c6644" data-automation="shade-node-4"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="flagship-pdp-sticky-bar" id="luxury-global-pdp-sticky-node" data-automation="pdp-sticky-action-bar-container">
+    <div class="sticky-bar-meta">
+        <img src="https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&w=120&q=80" class="sticky-bar-thumb-img" alt="Product Thumbnail Base Object">
+        <div>
+            <h4 style="font-family:var(--font-main); font-size:0.95rem; margin:0 0 2px 0; font-weight:bold; color:var(--text-charcoal);">AURA Flagship Essence Elixir</h4>
+            <p style="color:var(--text-muted); margin:0; font-size:0.75rem;">Premium Complex / Full Structural Package Units</p>
+        </div>
+    </div>
+    <div>
+        <button class="buy-btn" id="sticky-bar-instant-checkout-btn" data-automation="sticky-checkout-submit-trigger" style="padding:12px 30px; font-size:0.8rem; margin-top:0;">Instantly Add To Bag</button>
+    </div>
+</div>
     <!-- --- IMMERSIVE EXPERIENCE VIEWS CONTAINER --- -->
 <div id="experience-page-view" class="experience-view" data-automation="experience-page">
     
@@ -2450,6 +2947,8 @@
                 </div>
             </div>
         </div>
+
+        
     </footer>
 
     <script>
@@ -3488,6 +3987,109 @@ document.querySelectorAll("#mainNavMenu a").forEach(link => {
             stickyBar.classList.add("visible");
         } else {
             stickyBar.classList.remove("visible");
+        }
+    });
+});
+
+        // ==========================================================================
+// PRESERVING ARCHITECTURE: ENHANCED INTERACTIVE LOGIC PIPELINE
+// ==========================================================================
+document.addEventListener("DOMContentLoaded", function () {
+    
+    // Fix 1 & 2: Smooth Cross-Fade Auto-Morph Slider Module Execution
+    const stepButtons = document.querySelectorAll(".morph-step-trigger");
+    const imageLayers = document.querySelectorAll(".morph-viewport-img");
+    const storyCards = document.querySelectorAll(".morph-story-card");
+    
+    if (stepButtons.length > 0) {
+        stepButtons.forEach(btn => {
+            btn.addEventListener("click", function () {
+                const targetStep = this.getAttribute("data-target-step");
+                
+                stepButtons.forEach(b => b.classList.remove("is-active"));
+                imageLayers.forEach(img => img.classList.remove("is-active"));
+                storyCards.forEach(card => card.classList.remove("is-active"));
+                
+                this.classList.add("is-active");
+                
+                if (targetStep === "step1") {
+                    document.getElementById("img-layer-step1").classList.add("is-active");
+                    document.getElementById("text-story-step1").classList.add("is-active");
+                } else if (targetStep === "step2") {
+                    document.getElementById("img-layer-step2").classList.add("is-active");
+                    document.getElementById("text-story-step2").classList.add("is-active");
+                } else if (targetStep === "step3") {
+                    document.getElementById("img-layer-step3").classList.add("is-active");
+                    document.getElementById("text-story-step3").classList.add("is-active");
+                }
+            });
+        });
+        
+        // Automated smooth baseline rotation setup (Ensures layout never freezes up script flows)
+        let autoMorphIndex = 0;
+        setInterval(() => {
+            autoMorphIndex = (autoMorphIndex + 1) % stepButtons.length;
+            stepButtons[autoMorphIndex].click();
+        }, 6000);
+    }
+
+    // Fix 3: Live Time-Synced Tutorial Video Progress Matrix Engine
+    const dynamicVideoPlayer = document.getElementById("luxury-playback-canvas");
+    const liveMatrixCards = document.querySelectorAll(".matrix-live-card");
+    
+    if (dynamicVideoPlayer) {
+        dynamicVideoPlayer.addEventListener("timeupdate", function () {
+            const currentPlaybackTimestamp = dynamicVideoPlayer.currentTime;
+            
+            liveMatrixCards.forEach(card => {
+                const timeStartBoundary = parseFloat(card.getAttribute("data-time-start"));
+                const timeEndBoundary = parseFloat(card.getAttribute("data-time-end"));
+                
+                if (currentPlaybackTimestamp >= timeStartBoundary && currentPlaybackTimestamp < timeEndBoundary) {
+                    card.classList.add("is-active");
+                } else {
+                    card.classList.remove("is-active");
+                }
+            });
+        });
+    }
+
+    // Fix 3: Immersive Shade Selection Palette Interactions Layer Matching
+    const skinToneSwatches = document.querySelectorAll(".luxury-shade-circle");
+    const headlineDisplayNode = document.getElementById("luxury-shade-headline");
+    const hexCodeDisplayNode = document.getElementById("luxury-shade-hex-code");
+    const interactiveTintOverlayNode = document.getElementById("luxury-shade-tint-layer");
+    
+    if (skinToneSwatches.length > 0) {
+        skinToneSwatches.forEach(swatchNode => {
+            swatchNode.addEventListener("click", function () {
+                skinToneSwatches.forEach(s => s.classList.remove("is-active"));
+                this.classList.add("is-active");
+                
+                const chosenVariantTitle = this.getAttribute("data-title-variant");
+                const chosenHexColorValue = this.getAttribute("data-hex-val");
+                
+                headlineDisplayNode.textContent = chosenVariantTitle;
+                hexCodeDisplayNode.textContent = chosenHexColorValue;
+                
+                if (interactiveTintOverlayNode) {
+                    interactiveTintOverlayNode.style.backgroundColor = chosenHexColorValue;
+                }
+            });
+        });
+    }
+
+    // Fix 3: Pinned Smart Global PDP Action Banner View Trigger Script
+    const stickyBottomActionBar = document.getElementById("luxury-global-pdp-sticky-node");
+    
+    window.addEventListener("scroll", function () {
+        if (!stickyBottomActionBar) return;
+        
+        // Triggers beautifully whenever the viewport crosses standard scroll depth
+        if (window.scrollY > 750) {
+            stickyBottomActionBar.classList.add("is-visible");
+        } else {
+            stickyBottomActionBar.classList.remove("is-visible");
         }
     });
 });

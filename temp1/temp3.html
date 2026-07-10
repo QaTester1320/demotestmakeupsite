@@ -1,0 +1,217 @@
+<!-- KINETIC MATRIX MATRIX COMPOSITION SYSTEM -->
+<style>
+    :root {
+        --matte-dark-bg: #0d0d0d;
+        --matte-panel-gray: #151515;
+        --gold-accent: #c5a059;
+        --text-muted: #7c7c7c;
+        --font-ui: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    .matrix-stage-section {
+        width: 100%;
+        min-height: 100vh;
+        background-color: var(--matte-dark-bg);
+        padding: 40px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        font-family: var(--font-ui);
+    }
+
+    /* Absolute non-split layout: A modular full-screen interactive grid geometry */
+    .matrix-interactive-grid {
+        width: 100%;
+        max-width: 1400px;
+        height: 75vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+        transition: grid-template-columns 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Modular Pane Structure */
+    .matrix-pane {
+        position: relative;
+        background-color: var(--matte-panel-gray);
+        border: 1px solid rgba(255, 255, 255, 0.02);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 40px;
+        box-sizing: border-box;
+        transition: background-color 0.5s ease, border-color 0.5s ease;
+    }
+
+    /* Content Layout Components inside Panes */
+    .pane-header-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        z-index: 5;
+    }
+
+    .pane-index {
+        font-family: monospace;
+        font-size: 11px;
+        color: var(--gold-accent);
+        letter-spacing: 2px;
+    }
+
+    .pane-tech-stamp {
+        font-family: monospace;
+        font-size: 10px;
+        color: var(--text-muted);
+    }
+
+    .pane-body-wrap {
+        z-index: 5;
+        transform: translateY(0);
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .pane-title {
+        font-size: 1.8rem;
+        font-weight: 300;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+    }
+
+    .pane-description {
+        font-size: 13px;
+        color: var(--text-muted);
+        line-height: 1.6;
+        max-width: 280px;
+        opacity: 0.8;
+        transition: opacity 0.6s ease, color 0.6s ease;
+    }
+
+    /* Immersive Hidden Asset Layer inside every pane */
+    .pane-background-visual {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0;
+        transform: scale(1.15) rotate(1deg);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        pointer-events: none;
+    }
+
+    .pane-background-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.65) contrast(1.15);
+    }
+
+    /* Deep Matte Shutter Veil Overlay */
+    .pane-shutter-curtain {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--matte-panel-gray);
+        z-index: 2;
+        transform: scaleY(1);
+        transform-origin: top;
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        pointer-events: none;
+    }
+
+    /* THE HOVER MATRIX ENGINE BEHAVIORS */
+    
+    /* Dynamically compress neighbors while magnifying active section */
+    .matrix-interactive-grid:has(.pane-01:hover) { grid-template-columns: 2fr 0.6fr 0.6fr; }
+    .matrix-interactive-grid:has(.pane-02:hover) { grid-template-columns: 0.6fr 2fr 0.6fr; }
+    .matrix-interactive-grid:has(.pane-03:hover) { grid-template-columns: 0.6fr 0.6fr 2fr; }
+
+    /* Active Pane Internal Layer Shifts */
+    .matrix-pane:hover {
+        border-color: rgba(197, 160, 89, 0.25);
+    }
+
+    .matrix-pane:hover .pane-shutter-curtain {
+        transform: scaleY(0);
+    }
+
+    .matrix-pane:hover .pane-background-visual {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+
+    .matrix-pane:hover .pane-description {
+        color: #ffffff;
+        opacity: 1;
+    }
+
+    .matrix-pane:hover .pane-body-wrap {
+        transform: translateY(-5px);
+    }
+</style>
+
+<section class="matrix-stage-section">
+    <div class="matrix-interactive-grid">
+        
+        <!-- PANE 01 -->
+        <div class="matrix-pane pane-01">
+            <div class="pane-shutter-curtain"></div>
+            <div class="pane-background-visual">
+                <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=800&auto=format&fit=crop" alt="Matte Radiance Matrix">
+            </div>
+            
+            <div class="pane-header-wrap">
+                <span class="pane-index">[01 // CRIMSOM]</span>
+                <span class="pane-tech-stamp">SYS: MATTE_CORE</span>
+            </div>
+            <div class="pane-body-wrap">
+                <h3 class="pane-title">Satin<br>Radiance</h3>
+                <p class="pane-description">Hover to shift spatial structure. Cold-pressed micro-matrices adapt instantly to skin thermals.</p>
+            </div>
+        </div>
+
+        <!-- PANE 02 -->
+        <div class="matrix-pane pane-02">
+            <div class="pane-shutter-curtain"></div>
+            <div class="pane-background-visual">
+                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800&auto=format&fit=crop" alt="Velvet Lipstick Profile">
+            </div>
+
+            <div class="pane-header-wrap">
+                <span class="pane-index">[02 // VELVET]</span>
+                <span class="pane-tech-stamp">SYS: MOL_REFRACT</span>
+            </div>
+            <div class="pane-body-wrap">
+                <h3 class="pane-title">Velvet<br>Editorial</h3>
+                <p class="pane-description">Expanding layout bounds. Light-diffusing spherical polymers flatten structural texture shadows.</p>
+            </div>
+        </div>
+
+        <!-- PANE 03 -->
+        <div class="matrix-pane pane-03">
+            <div class="pane-shutter-curtain"></div>
+            <div class="pane-background-visual">
+                <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop" alt="Fluid Bases Composition">
+            </div>
+
+            <div class="pane-header-wrap">
+                <span class="pane-index">[03 // FLUID]</span>
+                <span class="pane-tech-stamp">SYS: CHROM_LAB</span>
+            </div>
+            <div class="pane-body-wrap">
+                <h3 class="pane-title">Hydra<br>Melt</h3>
+                <p class="pane-description">Liquefying boundaries completely. Seamless hardware-accelerated masks reveal underlying depth layers.</p>
+            </div>
+        </div>
+
+    </div>
+</section>

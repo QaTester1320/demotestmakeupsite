@@ -1,0 +1,177 @@
+<!-- CONCEPT 1: ASYMMETRIC KINETIC PILLARS -->
+<style>
+    :root {
+        --matte-dark: #0a0a0a;
+        --panel-border: rgba(255, 255, 255, 0.04);
+        --gold-glow: #c5a059;
+    }
+
+    .pillar-stage-section {
+        width: 100%;
+        height: 100vh;
+        background-color: var(--matte-dark);
+        display: flex;
+        overflow: hidden;
+        position: relative;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    .kinetic-pillar {
+        flex: 1;
+        height: 100%;
+        position: relative;
+        border-right: 1px solid var(--panel-border);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 60px 30px;
+        box-sizing: border-box;
+        transition: flex 1s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.5s ease;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .pillar-bg-visual {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0;
+        transform: scale(1.2);
+        transition: opacity 0.8s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        pointer-events: none;
+    }
+
+    .pillar-bg-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.5) contrast(1.2) saturate(0.8);
+    }
+
+    .pillar-shutter {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #121212;
+        z-index: 2;
+        transform: scaleX(1);
+        transform-origin: left;
+        transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .pillar-meta {
+        font-family: monospace;
+        font-size: 11px;
+        color: var(--gold-glow);
+        letter-spacing: 3px;
+        z-index: 3;
+        writing-mode: vertical-rl;
+        text-transform: uppercase;
+        transition: writing-mode 0.3s ease;
+    }
+
+    .pillar-title-wrap {
+        z-index: 3;
+        transform: rotate(-90deg) translateX(-30px);
+        transform-origin: left bottom;
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        white-space: nowrap;
+    }
+
+    .pillar-title {
+        font-size: 2rem;
+        font-weight: 300;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .pillar-desc {
+        font-size: 13px;
+        color: #888888;
+        line-height: 1.6;
+        max-width: 320px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        z-index: 3;
+    }
+
+    /* HOVER STRUCTURAL TRANSFORMATIONS */
+    .pillar-stage-section:hover .kinetic-pillar {
+        flex: 0.5;
+    }
+
+    .kinetic-pillar:hover {
+        flex: 2.5 !important;
+    }
+
+    .kinetic-pillar:hover .pillar-shutter {
+        transform: scaleX(0);
+    }
+
+    .kinetic-pillar:hover .pillar-bg-visual {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .kinetic-pillar:hover .pillar-title-wrap {
+        transform: rotate(0deg) translateX(0) translateY(0);
+    }
+
+    .kinetic-pillar:hover .pillar-meta {
+        writing-mode: horizontal-tb;
+    }
+
+    .kinetic-pillar:hover .pillar-desc {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.3s;
+    }
+</style>
+
+<section class="pillar-stage-section">
+    <!-- Pillar 01 -->
+    <div class="kinetic-pillar">
+        <div class="pillar-shutter"></div>
+        <div class="pillar-bg-visual">
+            <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=800&auto=format&fit=crop" alt="Matte Core">
+        </div>
+        <div class="pillar-meta">Form.001 // Matt</div>
+        <div class="pillar-title-wrap">
+            <h3 class="pillar-title">Satin Velvet</h3>
+        </div>
+        <p class="pillar-desc">Deep thermal blending complex engineered to melt flawlessly over surface textures without cracking.</p>
+    </div>
+
+    <!-- Pillar 02 -->
+    <div class="kinetic-pillar">
+        <div class="pillar-shutter"></div>
+        <div class="pillar-bg-visual">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800&auto=format&fit=crop" alt="Lipstick Texture">
+        </div>
+        <div class="pillar-meta">Form.002 // Core</div>
+        <div class="pillar-title-wrap">
+            <h3 class="pillar-title">Crimson Bloom</h3>
+        </div>
+        <p class="pillar-desc">Light-diffusing structural pigments that cast an absolute velvet shadow blockade under studio light fields.</p>
+    </div>
+
+    <!-- Pillar 03 -->
+    <div class="kinetic-pillar">
+        <div class="pillar-shutter"></div>
+        <div class="pillar-bg-visual">
+            <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop" alt="Cosmetic Base">
+        </div>
+        <div class="pillar-meta">Form.003 // Fluid</div>
+        <div class="pillar-title-wrap">
+            <h3 class="pillar-title">Opal Essence</h3>
+        </div>
+        <p class="pillar-desc">Spherical micro-polymers working seamlessly behind an invisible hardware-accelerated moisture shield.</p>
+    </div>
+</section>
